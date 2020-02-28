@@ -1,0 +1,15 @@
+.navbar{
+	text-transform:  uppercase;
+	background-color: #79ff34;
+
+}
+
+.navbar-brand{
+	height: 2rem /* Height of the navbar  */
+
+}
+
+.navbar-toggler {
+  background:yellow !important;  /* Changes the toggle button colour */
+
+}

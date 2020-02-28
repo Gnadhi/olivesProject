@@ -1,8 +1,0 @@
-.navbar{
-	text-transform: uppercase;
-	background-color: 	#000000;
-}
-
-.navbar-brand img {
-    height: 2rem;
-}
