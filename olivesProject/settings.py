@@ -21,6 +21,9 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # Builds a path to the static folder
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
+# Builds a path to the static folder
+MEDIA_DIR = os.path.join(BASE_DIR, "media")
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
@@ -126,3 +129,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+# Media Files
+
+MEDIA_ROOT = MEDIA_DIR
+
+MEDIA_URL = "/media/"

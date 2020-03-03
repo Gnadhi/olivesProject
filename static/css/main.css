@@ -36,7 +36,7 @@ p {
 .navbar{
 	text-transform:  uppercase;
 	background-color: var(--mild-bg-color);
-	padding-bottom: 2rem !important;
+
 }
 
 .navbar-brand{
@@ -69,8 +69,13 @@ p {
 
 /* Start of Footer Style */
 .footer {
+	position: relative;
 	background: var(--main-bg-color);
-	padding-top: 5rem;
+	padding-top: 2rem;
 	text-align: center;
 }
 /* End of Footer Style */
+
+.home{
+	position: relative;
+}
