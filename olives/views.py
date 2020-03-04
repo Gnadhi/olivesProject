@@ -6,3 +6,7 @@ def index(request):
     # PLACEHOLDER !!!
     response = render(request, "base.html")
     return response
+
+def dishReview(request):
+    response = render(request, "reviewDishes.html")
+    return response
