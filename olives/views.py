@@ -4,9 +4,10 @@ from django.http import HttpResponse
 
 def index(request):
     # PLACEHOLDER !!!
-    response = render(request, "base.html")
+    response = render(request, "olives/base.html")
     return response
 
+
 def dishReview(request):
-    response = render(request, "reviewDishes.html")
+    response = render(request, "olives/reviewDishes.html")
     return response

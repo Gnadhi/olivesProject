@@ -2,8 +2,8 @@ import os  # Needed to use the os.path function
 
 from django.db import models  # Needed to uses django models
 from django.template.defaultfilters import slugify  # Needed to uses the slugify function
-from django.contrib.auth.models import User, \
-    AbstractUser  # Needed to create a 1 to 1 link with the django built in User model
+from django.contrib.auth.models import User  # Needed to create a 1 to 1 link with the django built in
+# User model
 
 
 class Menu(models.Model):
@@ -76,11 +76,12 @@ class Booking(models.Model):
 
 
 # Creates the staff table
-class Staff(AbstractUser):
-    STAFF_TYPE_CHOICES = (
-        (1, 'Staff'),
-        (2, 'Admin'),
-        (3, 'Super User'),
-    )
+class Staff(models.Model):
+    staff = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_admin = models.BooleanField(default=False)
+    is_superUser = models.BooleanField(default=False)
 
-    staffType = models.PositiveSmallIntegerField(choices=STAFF_TYPE_CHOICES)
+    def __str__(self):
+        return self.staff
+
+
