@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Olives & Pesto</title>
+    </head>
+
+    <body>
+        <h1>Add a Dish</h1>
+        <div>
+            <form id="dish_form" method="post" action="/olives/add_dish/">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                    {{ field }}
+                {% endfor %}
+                <input type="submit" name="submit" value="Add Dish" />
+            </form>
+        </div>
+    </body>
+</html>

@@ -2,7 +2,8 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from olives.forms import StaffSignUpForm
-
+from olives.models import Dish
+from olives.forms import DishForm
 
 def index(request):
     # PLACEHOLDER !!!
@@ -11,8 +12,26 @@ def index(request):
 
 
 def dishReview(request):
-    response = render(request, "olives/reviewDishes.html")
+    dishList = Dish.objects.order_by('-likes')[:5]
+
+    context_dict = {}
+    context_dict['boldmessage'] = 'The top five dishes of Olives & Pesto:'
+    context_dict['TopDishes'] = dishList
+    response = render(request, "olives/reviewDishes.html",context=context_dict)
     return response
+
+def add_dish(request):
+    form = DishForm()
+
+    if request.method == 'POST':
+        form = DishForm(request.POST)
+
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('/olives/')
+        else:
+            print(form.errors)
+    return render(request, 'olives/add_dish.html', {'form':form})
 
 
 def staffSignUp(request):

@@ -17,10 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from olives import views
-import olives
 
 urlpatterns = [
+    path('', views.index, name='index'),
+    path('olives/', include("olives.urls")),
     path('admin/', admin.site.urls),
-    path('', include("olives.urls")),
     path('accounts/', include('registration.backends.simple.urls')),
 ]

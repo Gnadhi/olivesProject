@@ -27,7 +27,6 @@ class Menu(models.Model):
 class Dish(models.Model):
     name = models.CharField(max_length=50)  # The name of the dish
     likes = models.IntegerField(default=0)  # The number of likes the dishes have
-    dislike = models.IntegerField(default=0)
 
     class Meta:
         verbose_name_plural = 'Dishes'

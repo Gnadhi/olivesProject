@@ -10,5 +10,20 @@
         <div>
             <h1>Olives - Dish Review Page</h1>
         </div>
+        <div>
+            <strong>{{ boldmessage }}</strong>
+        </div>
+
+        <div>
+        {% if TopDishes %}
+            <ul>
+            {% for dish in TopDishes %}
+                <li>{{ dish.name }}<strong> Likes: </strong>{{ dish.likes }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no dishes present!</strong>
+        {% endif %}
+        </div>
     </body>
 </html>
