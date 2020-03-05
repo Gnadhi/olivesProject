@@ -1,5 +1,6 @@
 {% extends 'olives\base.html' %}
 
+
 {% block title_block %}
     Login
 {% endblock %}
@@ -7,19 +8,36 @@
 {% block body_block %}
 <h1>Login</h1>
 
-<form method = "POST" action = ".">
+  {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+  
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+  
+  <form method="post" action ".">
     {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <input type="submit" value = "Log In" />
-    <input type="hidden" name = "next" value="{{ next }}" />
-
-</form>
-
-<p>
-    Not Registered?
-    <a href="{% url 'registration_register' %}">Register here!</a>
-</p>
-
+    <table>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="Log In" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+  
+  
 {% endblock %}
+
+
