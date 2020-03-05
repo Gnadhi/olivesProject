@@ -6,4 +6,5 @@ app_name = "olives"
 urlpatterns = [
     path("", views.index, name="index"),  # The index is the home page of the website
     path("dish-review/", views.dishReview, name="dishReview"),
+    path("staff-sign-up/", views.staffSignUp, name="staffSignUp")
 ]

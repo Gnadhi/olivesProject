@@ -56,8 +56,11 @@ class Customer(models.Model):
     # The additional attributes we wish to include
     order = models.ForeignKey(Order, on_delete=models.CASCADE)  # One customer can have many orders
 
+    class Meta:
+        verbose_name_plural = 'Customers'
+
     def __str__(self):
-        return self.customer.username
+        return self.customer
 
 
 # Booking has 1 to 1 relationship with Customer
@@ -78,10 +81,11 @@ class Booking(models.Model):
 # Creates the staff table
 class Staff(models.Model):
     staff = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_admin = models.BooleanField(default=False)
-    is_superUser = models.BooleanField(default=False)
+
+    class Meta:
+        verbose_name_plural = 'Staff Members'
 
     def __str__(self):
-        return self.staff.username
+        return self.staff
 
 
