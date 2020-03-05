@@ -79,16 +79,8 @@ class Booking(models.Model):
 class Staff(models.Model):
     staff = models.OneToOneField(User, on_delete=models.CASCADE)
     is_admin = models.BooleanField(default=False)
-
-    staffType = models.PositiveSmallIntegerField(choices=STAFF_TYPE_CHOICES)
-=======
-class Staff(models.Model):
-    staff = models.OneToOneField(User, on_delete=models.CASCADE)
-    is_admin = models.BooleanField(default=False)
     is_superUser = models.BooleanField(default=False)
 
     def __str__(self):
         return self.staff.username
 
-
->>>>>>> 30c78189883d83d46f1e04d7432b16df3c7bf25e
