@@ -7,6 +7,7 @@ def index(request):
     response = render(request, "olives/base.html")
     return response
 
+
 def dishReview(request):
     response = render(request, "olives/reviewDishes.html")
     return response

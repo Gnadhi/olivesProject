@@ -5,7 +5,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'olivesProject.settings')
 import django
 
 django.setup()
-from olives.models import Dishes
+from olives.models import Dish
 
 
 def populate():
