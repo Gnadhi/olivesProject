@@ -22,4 +22,5 @@ import olives
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("olives.urls")),
+    path('accounts/', include('registration.backends.simple.urls')),
 ]
