@@ -82,6 +82,6 @@ class Staff(models.Model):
     is_superUser = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.staff
+        return self.staff.username
 
 
