@@ -35,6 +35,23 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Variables to be used throughout django.
+
+
+#------------ These variables are for user authentication. ----------#
+
+# If True users can register.
+REGISTRATION_OPEN = True
+
+# If  True, users will be automatically logged in after registering.
+REGISTRATION_AUTO_LOGIN = True
+
+# The Url Django redirects the user to after logging in.
+LOGIN_REDIRECT_URL = 'olives:index'
+
+# The page users are directed to if they are not logged in.The registration package uses this, too. 
+LOGIN_URL = 'auth_login'
+
 
 # Application definition
 
@@ -46,6 +63,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'olives',
+    'registration',
 ]
 
 ROOT_URLCONF = 'olivesProject.urls'
