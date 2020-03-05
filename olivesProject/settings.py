@@ -52,6 +52,8 @@ LOGIN_REDIRECT_URL = 'olives:index'
 # The page users are directed to if they are not logged in.The registration package uses this, too. 
 LOGIN_URL = 'auth_login'
 
+# As we are using a custom user model we need to add this.
+# AUTH_USER_MODEL = 'olives.User'
 
 # Application definition
 
@@ -81,7 +83,8 @@ MIDDLEWARE = [
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATE_DIR],
+        # 'DIRS': [TEMPLATE_DIR],
+        'DIRS': [os.path.join(BASE_DIR, 'template/registration'), TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
