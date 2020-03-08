@@ -53,13 +53,33 @@ class Customer(models.Model):
     customer = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # The additional attributes we wish to include
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)  # One customer can have many orders
+    #order = models.ForeignKey(Order, on_delete=models.CASCADE)  # One customer can have many orders
 
     class Meta:
         verbose_name_plural = 'Customers'
 
     def __str__(self):
         return self.customer
+
+class Staff(models.Model):
+    staff = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
+    #staff_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'Staff'
+
+    def __str__(self):
+        return self.staff
+
+class Admin(models.Model):
+    admin = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
+    admin_check =models.ForeignKey(Staff, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = 'Admin'
+
+    def __str__(self):
+        return self.admin
 
 
 # Booking has 1 to 1 relationship with Customer
@@ -89,17 +109,16 @@ class Booking(models.Model):
 
 # This is for the Custom user Data.
 
-class User(AbstractUser):
-    is_staff = models.BooleanField(default=False)
-    is_customer = models.BooleanField(default=False)
+# class User(AbstractUser):
+#     is_staff = models.BooleanField(default=False)
+#     is_customer = models.BooleanField(default=False)
 
-    def __str__():
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 # For now just create a seperate User class for Customer
 
-class Customer(models.Models):
-    user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
+    
     
 
 
