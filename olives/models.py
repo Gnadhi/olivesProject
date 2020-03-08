@@ -2,7 +2,7 @@ import os  # Needed to use the os.path function
 
 from django.db import models  # Needed to uses django models
 from django.template.defaultfilters import slugify  # Needed to uses the slugify function
-from django.contrib.auth.models import User  # Needed to create a 1 to 1 link with the django built in
+from django.contrib.auth.models import User, AbstractUser # Needed to create a 1 to 1 link with the django built in
 # User model
 
 
@@ -78,12 +78,28 @@ class Booking(models.Model):
 
 
 # Creates the staff table
-class Staff(models.Model):
-    staff = models.OneToOneField(User, on_delete=models.CASCADE)
+# class Staff(models.Model):
+#     staff = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    class Meta:
-        verbose_name_plural = 'Staff Members'
+#     class Meta:
+#         verbose_name_plural = 'Staff Members'
 
-    def __str__(self):
-        return self.staff
+#     def __str__(self):
+#         return self.staff
+
+# This is for the Custom user Data.
+
+class User(AbstractUser):
+    is_staff = models.BooleanField(default=False)
+    is_customer = models.BooleanField(default=False)
+
+    def __str__():
+        return self.name
+
+# For now just create a seperate User class for Customer
+
+class Customer(models.Models):
+    user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
+    
+
 

@@ -80,19 +80,6 @@ class Booking(models.Model):
 
 
 # Creates the staff table
-<<<<<<< HEAD
-class Staff(User):
-
-    name = models.CharField(max_length = 40)
-    
-    STAFF_TYPE_CHOICES = (
-        (1, 'Staff'),
-        (2, 'Admin'),
-        (3, 'Super User'),
-    )
-
-    staffType = models.PositiveSmallIntegerField(choices=STAFF_TYPE_CHOICES)
-=======
 class Staff(models.Model):
     staff = models.OneToOneField(User, on_delete=models.CASCADE)
     is_admin = models.BooleanField(default=False)
@@ -102,4 +89,3 @@ class Staff(models.Model):
         return self.staff.username
 
 
->>>>>>> 30c78189883d83d46f1e04d7432b16df3c7bf25e
