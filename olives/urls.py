@@ -9,7 +9,7 @@ urlpatterns = [
     path("dish-review/", views.dishReview, name="dishReview"),
     path("staff-sign-up/", views.staffSignUp, name="staffSignUp"),
     path('admin/', admin.site.urls, name="admin"),
-    path("add-dish/", views.add_dish, name="add_dish"),
+    path("add_dish/", views.add_dish, name="add_dish"),
     path("booking/", views.make_booking, name="booking"),
-
+    path("delete_dish/", views.delete_dish, name="delete_dish"),
 ]

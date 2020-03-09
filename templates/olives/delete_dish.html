@@ -1,0 +1,21 @@
+{% extends 'olives/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Delete A Dish
+{% endblock %}
+
+{% block body_block %}
+        <h1>Delete a Dish</h1>
+        <form id="delete_dish_form" method="post" action="/olives/delete_dish/">
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+                {{ field.help_text }}
+                {{ field }}
+            {% endfor %}
+            <input type="submit" name="submit" value="Delete Dish" />   
+        </form>
+        <div>
+            <button><a href="/olives/dish-review">To the review page!</a></button>
+        </div>
+{% endblock %}

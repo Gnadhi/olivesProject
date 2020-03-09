@@ -36,3 +36,15 @@ class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
         fields = ("name", "phone", "noOfPeople", "date", "time")
+
+
+class DishDeleteForm(forms.ModelForm):
+    dishs = Dish.objects.all()
+    dish = []
+    for d in dishs:
+        dish += [(d.name,d.name)]
+    dishDelete = forms.CharField(widget=forms.Select(choices=dish),help_text="Please select the dish to delete")
+
+    class Meta:
+        model = Dish
+        fields = ('dishDelete',)
