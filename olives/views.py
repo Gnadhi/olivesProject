@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from olives.forms import StaffSignUpForm, BookingForm
@@ -6,6 +7,8 @@ from olives.models import Dish
 from olives.forms import DishForm, DishDeleteForm
 from django.contrib import messages
 from django.views import View
+
+
 def index(request):
     # PLACEHOLDER !!!
     response = render(request, "olives/base.html")
