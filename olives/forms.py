@@ -15,10 +15,20 @@ class StaffSignUpForm(UserCreationForm):
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', "isAdmin", "isSuperuser")
 
 class DishForm(forms.ModelForm):
-    name = forms.CharField(max_length=50,help_text="Please enter the name of the dish.")
+    name = forms.CharField(label="Please enter a dish to add: ",max_length=50)
     likes = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 
     class Meta:
         model = Dish
         fields = ('name',)
-    
+
+class DishDeleteForm(forms.ModelForm):
+    dishs = Dish.objects.all()
+    dish = []
+    for d in dishs:
+        dish += [(d.name,d.name)]
+    dishDelete = forms.CharField(widget=forms.Select(choices=dish),help_text="Please select the dish to delete")
+
+    class Meta:
+        model = Dish
+        fields = ('dishDelete',)
