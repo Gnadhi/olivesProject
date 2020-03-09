@@ -25,5 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     # fixes the 'Not Found: /favicon.ico' error.
-    url(r'^favicon\.ico$',RedirectView.as_view(url='/static/images/favicon.ico')),
+ 
 ]
