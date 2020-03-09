@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from olives.forms import StaffSignUpForm
 from olives.models import Dish
 from olives.forms import DishForm, DishDeleteForm
@@ -31,7 +31,7 @@ def add_dish(request):
         if form.is_valid():
             if(Dish.objects.filter(name=form.cleaned_data['name']).exists()==False):
                 form.save(commit=True)
-                return redirect('/olives/dish-review')
+                return redirect('/olives/add_dish')
             else:
                 messages.warning(request,'The dish already exists!')
                 render(request, 'olives/add_dish.html', {'form':form})
@@ -40,15 +40,18 @@ def add_dish(request):
     return render(request, 'olives/add_dish.html', {'form':form})
 
 def delete_dish(request):
-    form = DishDeleteForm(request.POST)
-    
     if request.method == 'POST':
+        form = DishDeleteForm(request.POST)
         if form.is_valid():
-            dish = form.cleaned_data.get('dishDelete')
-            Dish.objects.filter(name=dish).delete()
-            return redirect('/olives/dish-review')
+            dishID = form.cleaned_data.get('dishDelete')
+
+            dish  = Dish.objects.filter(id=dishID).first().delete()
+            print(dish)
+            return HttpResponseRedirect('/olives/delete_dish')
         else:
             print(form.errors)
+    else:
+        form = DishDeleteForm()
     return render(request,'olives/delete_dish.html',{'form':form})
 
 def staffSignUp(request):
