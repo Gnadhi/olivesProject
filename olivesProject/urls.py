@@ -19,8 +19,7 @@ from django.urls import path, include
 from olives import views
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('olives/', include("olives.urls")),
+    path('', include("olives.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
 ]
