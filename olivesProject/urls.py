@@ -24,6 +24,5 @@ urlpatterns = [
     path('', include("olives.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
-    # fixes the 'Not Found: /favicon.ico' error.
  
 ]

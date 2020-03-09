@@ -22,6 +22,15 @@ class DishForm(forms.ModelForm):
         model = Dish
         fields = ('name',)
 
+    def clean(self):
+        data = self.cleaned_data
+        name = data.get('name')
+        # to check for unquie dishes
+        dishes_same_name = Dish.objects.filter(name__icontains=name).count()
+        if(dishes_same_name>0):
+            self.add_error('name','Dish already exists!')
+
+
 
 class BookingForm(forms.ModelForm):
     # For the booking form doesnt have the confirm field as that is always set to false initially

@@ -20,13 +20,6 @@
                 {% endfor %}
                 <input type="submit" name="submit" value="Add Dish" />
             </form>
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li class="{{ message.tags }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
-            {% endif %}
         </div>
         <div>
             <button><a href="{% url "olives:dishReview" %}">To the review page!</a></button>
