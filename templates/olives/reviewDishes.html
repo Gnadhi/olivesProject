@@ -42,9 +42,9 @@
         {% endif %}
         </div>
         <div>
-            <button><a href="/olives/add_dish">Add a dish!</a></button>
+            <button><a href="{% url "olives:add_dish" %}">Add a dish!</a></button>
         </div>
         <div>
-            <button><a href="/olives/delete_dish">Delete a dish!</a></button>
+            <button><a href="{% url "olives:delete_dish" %}">Delete a dish!</a></button>
         </div>
 {% endblock %}

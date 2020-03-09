@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from olives.models import Dish
+from olives.models import Dish, Booking
+
 
 class StaffSignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
@@ -14,13 +15,28 @@ class StaffSignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', "isAdmin", "isSuperuser")
 
+
 class DishForm(forms.ModelForm):
 
     class Meta:
         model = Dish
         fields = ('name',)
 
-class DishDeleteForm(forms.Form):
+
+class BookingForm(forms.ModelForm):
+    # For the booking form doesnt have the confirm field as that is always set to false initially
+    name = forms.CharField(max_length=128, help_text="Please enter your name")
+    phone = forms.CharField(max_length=15, help_text="Please enter your phone number")
+    noOfPeople = forms.IntegerField(help_text="Please enter the number of people you want to book a table for")
+    date = forms.DateField(help_text="Please enter the date of booking")
+    time = forms.TimeField(help_text="Please enter the time of booking")
+
+    class Meta:
+        model = Booking
+        fields = ("name", "phone", "noOfPeople", "date", "time")
+
+
+class DishDeleteForm(forms.ModelForm):
     
     dishDelete = forms.ChoiceField()
 

@@ -21,8 +21,7 @@ from django.views.generic import RedirectView
 from django.conf.urls import url
 
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('olives/', include("olives.urls")),
+    path('', include("olives.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
     # fixes the 'Not Found: /favicon.ico' error.

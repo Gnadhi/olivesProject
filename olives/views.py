@@ -1,11 +1,14 @@
 from django.contrib.auth import authenticate, login
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from olives.forms import StaffSignUpForm
+from olives.forms import StaffSignUpForm, BookingForm
 from olives.models import Dish
 from olives.forms import DishForm, DishDeleteForm
 from django.contrib import messages
 from django.views import View
+
+
 def index(request):
     # PLACEHOLDER !!!
     response = render(request, "olives/base.html")
@@ -22,6 +25,7 @@ def dishReview(request):
     response = render(request, "olives/reviewDishes.html",context=context_dict)
     return response
 
+
 def add_dish(request):
     form = DishForm()
 
@@ -37,7 +41,7 @@ def add_dish(request):
                 render(request, 'olives/add_dish.html', {'form':form})
         else:
             print(form.errors)
-    return render(request, 'olives/add_dish.html', {'form':form})
+    return render(request, 'olives/add_dish.html', {'form': form})
 
 def delete_dish(request):
     if request.method == 'POST':
@@ -67,3 +71,17 @@ def staffSignUp(request):
     else:
         form = StaffSignUpForm()
     return render(request, 'olives/staffRegister.html', {'form': form})
+
+
+def make_booking(request):
+    form = BookingForm()
+
+    if request.method == "POST":
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect("olives:index")
+        else:
+            print(form.errors)
+
+    return render(request, "olives/booking.html", {'form': form})

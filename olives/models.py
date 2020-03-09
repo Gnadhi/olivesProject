@@ -2,7 +2,9 @@ import os  # Needed to use the os.path function
 
 from django.db import models  # Needed to uses django models
 from django.template.defaultfilters import slugify  # Needed to uses the slugify function
-from django.contrib.auth.models import User, AbstractUser # Needed to create a 1 to 1 link with the django built in
+from django.contrib.auth.models import User, AbstractUser  # Needed to create a 1 to 1 link with the django built in
+
+
 # User model
 
 
@@ -53,7 +55,7 @@ class Customer(models.Model):
     customer = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # The additional attributes we wish to include
-    #order = models.ForeignKey(Order, on_delete=models.CASCADE)  # One customer can have many orders
+    # order = models.ForeignKey(Order, on_delete=models.CASCADE)  # One customer can have many orders
 
     class Meta:
         verbose_name_plural = 'Customers'
@@ -61,9 +63,11 @@ class Customer(models.Model):
     def __str__(self):
         return self.customer
 
+
 class Staff(models.Model):
-    staff = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
-    #staff_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    staff = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+
+    # staff_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'Staff'
@@ -71,9 +75,10 @@ class Staff(models.Model):
     def __str__(self):
         return self.staff
 
+
 class Admin(models.Model):
-    admin = models.OneToOneField(User, on_delete=models.CASCADE, primary_key = True)
-    admin_check =models.ForeignKey(Staff, on_delete=models.CASCADE)
+    admin = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    admin_check = models.ForeignKey(Staff, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name_plural = 'Admin'
@@ -82,20 +87,20 @@ class Admin(models.Model):
         return self.admin
 
 
-# Booking has 1 to 1 relationship with Customer
+# Booking no longer has a link to any other table
 class Booking(models.Model):
-    bookingId = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=128, default="")
     phone = models.CharField(max_length=15)
     noOfPeople = models.IntegerField()
     date = models.DateField()
     time = models.TimeField()
+    confirm = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = 'Bookings'
 
     def __str__(self):
-        return self.bookingId
-
+        return self.name
 
 # Creates the staff table
 # class Staff(models.Model):
@@ -117,8 +122,3 @@ class Booking(models.Model):
 #         return self.name
 
 # For now just create a seperate User class for Customer
-
-    
-    
-
-
