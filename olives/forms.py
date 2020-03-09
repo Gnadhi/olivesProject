@@ -36,7 +36,7 @@ class BookingForm(forms.ModelForm):
         fields = ("name", "phone", "noOfPeople", "date", "time")
 
 
-class DishDeleteForm(forms.ModelForm):
+class DishDeleteForm(forms.Form):
     
     dishDelete = forms.ChoiceField()
 

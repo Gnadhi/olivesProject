@@ -8,7 +8,7 @@
 {% block body_block %}
         <h1>Add a Dish</h1>
         <div>
-            <form id="dish_form" method="post" action="/olives/add_dish/">
+            <form id="dish_form" method="post" action="{% url "olives:add_dish" %}">
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
@@ -29,7 +29,7 @@
             {% endif %}
         </div>
         <div>
-            <button><a href="/olives/dish-review">To the review page!</a></button>
+            <button><a href="{% url "olives:dishReview" %}">To the review page!</a></button>
         </div>
         
 {% endblock %}

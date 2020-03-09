@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from olives.forms import StaffSignUpForm, BookingForm
 from olives.models import Dish
@@ -35,7 +35,7 @@ def add_dish(request):
         if form.is_valid():
             if(Dish.objects.filter(name=form.cleaned_data['name']).exists()==False):
                 form.save(commit=True)
-                return redirect('/olives/add_dish')
+                return redirect('/add_dish')
             else:
                 messages.warning(request,'The dish already exists!')
                 render(request, 'olives/add_dish.html', {'form':form})
@@ -44,6 +44,7 @@ def add_dish(request):
     return render(request, 'olives/add_dish.html', {'form': form})
 
 def delete_dish(request):
+    
     if request.method == 'POST':
         form = DishDeleteForm(request.POST)
         if form.is_valid():
@@ -51,7 +52,7 @@ def delete_dish(request):
 
             dish  = Dish.objects.filter(id=dishID).first().delete()
             print(dish)
-            return HttpResponseRedirect('/olives/delete_dish')
+            return HttpResponseRedirect(reverse('olives:delete_dish'))
         else:
             print(form.errors)
     else:
