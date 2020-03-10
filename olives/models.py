@@ -90,7 +90,7 @@ class Admin(models.Model):
 # Booking no longer has a link to any other table
 class Booking(models.Model):
     name = models.CharField(max_length=128, default="")
-    email = models.EmailField()
+    email = models.EmailField(default="")
     phone = models.CharField(max_length=15)
     noOfPeople = models.IntegerField()
     date = models.DateField()

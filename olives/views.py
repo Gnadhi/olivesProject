@@ -53,10 +53,11 @@ def delete_dish(request):
             dishID = form.cleaned_data.get('dishDelete')
 
             dish  = Dish.objects.filter(id=dishID).first().delete()
-            print(dish)
             return HttpResponseRedirect(reverse('olives:delete_dish'))
         else:
             print(form.errors)
+    else:
+        form = DishDeleteForm()
     return render(request,'olives/delete_dish.html',{'form':form})
 
 
