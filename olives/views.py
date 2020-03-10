@@ -91,7 +91,7 @@ def make_booking(request):
                         + "Time: " + str(form.cleaned_data.get("time")) + "\n"
             mail_sender = "Booking@olivesandpesto.com"
             mail_sendAddress = form.cleaned_data.get("email")
-            # Subject Line, Message Body, Sender Address, Send Address
+            # Send Mail takes 4  required parameters - Subject Line, Message Body, Sender Address, Send Address
             send_mail(mail_subject, mail_body, mail_sender, [mail_sendAddress], fail_silently=False, )
             return redirect("olives:index")
         else:
