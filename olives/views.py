@@ -22,7 +22,7 @@ def dishReview(request):
     context_dict['boldmessage'] = 'The top five dishes of Olives & Pesto:'
     context_dict['TopDishes'] = dishList
     context_dict['AllDishes'] = allDishList
-    response = render(request, "olives/reviewDishes.html",context=context_dict)
+    response = render(request, "olives/reviewDishes.html", context=context_dict)
     return response
 
 
@@ -33,12 +33,17 @@ def add_dish(request):
         form = DishForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            return redirect('/add_dish')
+            if (Dish.objects.filter(name=form.cleaned_data['name']).exists() == False):
+                form.save(commit=True)
+                return redirect('/olives/add_dish')
+            else:
+                messages.warning(request, 'The dish already exists!')
+                render(request, 'olives/add_dish.html', {'form': form})
         else:
             render(request, 'olives/add_dish.html', {'form':form})
             print(form.errors)
     return render(request, 'olives/add_dish.html', {'form': form})
+
 
 def delete_dish(request):
     
@@ -52,9 +57,8 @@ def delete_dish(request):
             return HttpResponseRedirect(reverse('olives:delete_dish'))
         else:
             print(form.errors)
-    else:
-        form = DishDeleteForm()
     return render(request,'olives/delete_dish.html',{'form':form})
+
 
 def staffSignUp(request):
     if request.method == 'POST':
@@ -78,6 +82,17 @@ def make_booking(request):
         form = BookingForm(request.POST)
         if form.is_valid():
             form.save(commit=True)
+            # Sets up Email details
+            mail_subject = "Booking Confirmation"
+            mail_body = "Name: " + form.cleaned_data.get("name") + "\n" \
+                        + "Phone: " + form.cleaned_data.get("phone") + "\n" \
+                        + "Number of People: " + str(form.cleaned_data.get("noOfPeople")) + "\n" \
+                        + "Date: " + str(form.cleaned_data.get("date")) + "\n" \
+                        + "Time: " + str(form.cleaned_data.get("time")) + "\n"
+            mail_sender = "Booking@olivesandpesto.com"
+            mail_sendAddress = form.cleaned_data.get("email")
+            # Subject Line, Message Body, Sender Address, Send Address
+            send_mail(mail_subject, mail_body, mail_sender, [mail_sendAddress], fail_silently=False, )
             return redirect("olives:index")
         else:
             print(form.errors)

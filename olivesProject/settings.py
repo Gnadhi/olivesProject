@@ -38,7 +38,7 @@ ALLOWED_HOSTS = []
 # Variables to be used throughout django.
 
 
-#------------ These variables are for user authentication. ----------#
+# ------------ These variables are for user authentication. ----------#
 
 # If True users can register.
 REGISTRATION_OPEN = True
@@ -99,7 +99,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'olivesProject.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
@@ -109,7 +108,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -129,7 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -143,7 +140,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -156,3 +152,11 @@ STATICFILES_DIRS = [STATIC_DIR, ]
 MEDIA_ROOT = MEDIA_DIR
 
 MEDIA_URL = "/media/"
+
+# Email Settings
+# Created a FREE Send Grid account to send emails through their server
+# url - https://app.sendgrid.com
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_PORT = 587  # unencrypted/TLS connections
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = "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"
