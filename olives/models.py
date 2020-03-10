@@ -75,17 +75,18 @@ class Staff(models.Model):
     def __str__(self):
         return self.staff
 
-
 class Admin(models.Model):
     admin = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     admin_check = models.ForeignKey(Staff, on_delete=models.CASCADE)
 
-    class Meta:
-        verbose_name_plural = 'Admin'
+#     # Check if staff has said that this person is the admin.
+#     is_admin = Staff.is_admin
 
-    def __str__(self):
-        return self.admin
+#     class Meta:
+#         verbose_name_plural = 'Admin'
 
+#     def __str__(self):
+#         return self.admin
 
 # Booking no longer has a link to any other table
 class Booking(models.Model):

@@ -13,18 +13,23 @@ from olives.models import Menu, Dish, Order, Booking, Customer, Staff, Admin
 class MenuAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
-class StaffInLine(admin.StackedInline):
-    model = Staff
-    can_delete = False
-    verbose_name_plural = 'Staff'
+# class StaffInLine(admin.StackedInline):
+#     model = Staff
+#     can_delete = False
+#     if Admin.is_admin == True:
+#         can_delete = True
+#     else:
+#         can_delete = False
+#     print(can_delete)
+#     verbose_name_plural = 'Staff'
 
-class AdminInLine(admin.StackedInline):
-    model = Admin
-    can_delete = True
-    verbose_name_plural = 'Admin'
+# class AdminInLine(admin.StackedInline):
+#     model = Admin
+#     can_delete = True
+#     verbose_name_plural = 'Admin'
 
-class UserAdmin(BaseUserAdmin):
-    inlines = (StaffInLine, AdminInLine,)
+# class UserAdmin(BaseUserAdmin):
+#     inlines = (StaffInLine,)
 
 
 # admin.site.register(User, UserAdmin)
@@ -38,7 +43,7 @@ admin.site.register(Booking)
 
 # This is to Re-register UserAdmin
 admin.site.unregister(User)
-admin.site.register(User, UserAdmin)
+admin.site.register(User)
 
 
 #admin.site.register(Staff)
