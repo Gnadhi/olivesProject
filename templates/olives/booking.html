@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Olives & Pesto</title>
+    </head>
+
+    <body>
+        <h1>Add a booking</h1>
+        <div>
+            <form id="dish_form" method="post" action="/booking/">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text }}
+                    {{ field }}
+                {% endfor %}
+                <input type="submit" name="submit" value="Make Booking" />
+            </form>
+        </div>
+    </body>
+</html>

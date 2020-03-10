@@ -2,10 +2,12 @@ import os  # Needed to use the os.path function
 
 from django.db import models  # Needed to uses django models
 from django.template.defaultfilters import slugify  # Needed to uses the slugify function
-from django.contrib.auth.models import User, AbstractUser  # Needed to create a 1 to 1 link with the django built in
-
-
+<<<<<<< HEAD
+from django.contrib.auth.models import User # Needed to create a 1 to 1 link with the django built in User model
+=======
+from django.contrib.auth.models import User  # Needed to create a 1 to 1 link with the django built in
 # User model
+>>>>>>> 30c78189883d83d46f1e04d7432b16df3c7bf25e
 
 
 class Menu(models.Model):
@@ -29,6 +31,7 @@ class Menu(models.Model):
 class Dish(models.Model):
     name = models.CharField(max_length=50)  # The name of the dish
     likes = models.IntegerField(default=0)  # The number of likes the dishes have
+    dislike = models.IntegerField(default=0)
 
     class Meta:
         verbose_name_plural = 'Dishes'
@@ -55,71 +58,34 @@ class Customer(models.Model):
     customer = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # The additional attributes we wish to include
-    # order = models.ForeignKey(Order, on_delete=models.CASCADE)  # One customer can have many orders
-
-    class Meta:
-        verbose_name_plural = 'Customers'
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)  # One customer can have many orders
 
     def __str__(self):
-        return self.customer
+        return self.customer.username
 
 
-class Staff(models.Model):
-    staff = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-
-    # staff_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name_plural = 'Staff'
-
-    def __str__(self):
-        return self.staff
-
-
-class Admin(models.Model):
-    admin = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    admin_check = models.ForeignKey(Staff, on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name_plural = 'Admin'
-
-    def __str__(self):
-        return self.admin
-
-
-# Booking no longer has a link to any other table
+# Booking has 1 to 1 relationship with Customer
 class Booking(models.Model):
-    name = models.CharField(max_length=128, default="")
-    email = models.EmailField(default="")
+    bookingId = models.CharField(max_length=64, unique=True)
     phone = models.CharField(max_length=15)
     noOfPeople = models.IntegerField()
     date = models.DateField()
     time = models.TimeField()
-    confirm = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = 'Bookings'
 
     def __str__(self):
-        return self.name
+        return self.bookingId
+
 
 # Creates the staff table
-# class Staff(models.Model):
-#     staff = models.OneToOneField(User, on_delete=models.CASCADE)
+class Staff(models.Model):
+    staff = models.OneToOneField(User, on_delete=models.CASCADE)
+    is_admin = models.BooleanField(default=False)
+    is_superUser = models.BooleanField(default=False)
 
-#     class Meta:
-#         verbose_name_plural = 'Staff Members'
+    def __str__(self):
+        return self.staff.username
 
-#     def __str__(self):
-#         return self.staff
 
-# This is for the Custom user Data.
-
-# class User(AbstractUser):
-#     is_staff = models.BooleanField(default=False)
-#     is_customer = models.BooleanField(default=False)
-
-#     def __str__(self):
-#         return self.name
-
-# For now just create a seperate User class for Customer

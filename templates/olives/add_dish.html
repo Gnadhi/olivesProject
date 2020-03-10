@@ -1,0 +1,28 @@
+{% extends "olives/base.html" %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Add Dish
+{% endblock %}
+
+{% block body_block %}
+        <h1>Add a Dish</h1>
+        <div>
+            <form id="dish_form" method="post" action="{% url "olives:add_dish" %}">
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.label }}
+                    {{ field }}
+                {% endfor %}
+                <input type="submit" name="submit" value="Add Dish" />
+            </form>
+        </div>
+        <div>
+            <button><a href="{% url "olives:dishReview" %}">To the review page!</a></button>
+        </div>
+        
+{% endblock %}

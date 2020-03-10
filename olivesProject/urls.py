@@ -16,10 +16,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-
-import olives
+from olives import views
+from django.views.generic import RedirectView
+from django.conf.urls import url
 
 urlpatterns = [
+    path('', include("olives.urls")),
     path('admin/', admin.site.urls),
-    path('', include("olives.urls"))
+    path('accounts/', include('registration.backends.simple.urls')),
+ 
 ]

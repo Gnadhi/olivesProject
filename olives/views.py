@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 from django.shortcuts import render
+=======
+from django.contrib.auth import authenticate, login
+from django.core.mail import send_mail
+from django.shortcuts import render, redirect,reverse
+>>>>>>> b0fb6ec1b4b68c3c7a23540ce4962b311afd1fa2
 from django.http import HttpResponse, HttpResponseRedirect
 from olives.forms import StaffSignUpForm, BookingForm
 from olives.models import Dish
 from olives.forms import DishForm, DishDeleteForm
 from django.contrib import messages
 from django.views import View
+<<<<<<< HEAD
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect,reverse
@@ -25,6 +32,13 @@ def gallery(request):
 def specialevents(request):
 	return render(request, "olives/special-events.html")
 
+
+def index(request):
+    # PLACEHOLDER !!!
+    response = render(request, "olives/base.html")
+    return response
+
+>>>>>>> b0fb6ec1b4b68c3c7a23540ce4962b311afd1fa2
 
 def dishReview(request):
     dishList = Dish.objects.order_by('-likes')[:5]
@@ -68,6 +82,11 @@ def delete_dish(request):
             return HttpResponseRedirect(reverse('olives:delete_dish'))
         else:
             print(form.errors)
+            return HttpResponseRedirect(reverse('olives:delete_dish'))
+        else:
+            print(form.errors)
+    else:
+        form = DishDeleteForm()
     return render(request,'olives/delete_dish.html',{'form':form})
 
 
