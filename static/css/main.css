@@ -8,12 +8,12 @@ Author: Karl Gandhi
 
 /* Start of Global variables */
 :root {
-  	--main-bg-color: #a6ae84;
+  	--main-bg-color: #d3d3d3;
 	--secondary-bg-color: #ff4f50;
 	--mild-bg-color: #fff4db;
 
 	--main-accent-color: #008037;
-	--secondary-accent-color: #ff1616;
+	--secondary-accent-color: #ffffff;
 
 	--main-text-color:#000;
 
@@ -23,8 +23,10 @@ Author: Karl Gandhi
 
 /* Start of General Style */
 h1, h2, h3 {
-	color: var(--main-text-color);
+	color: orange;
 }
+
+
 
 p {
 	color: var(--main-text-color);
@@ -35,7 +37,8 @@ p {
 /* Start of Navbar Style */
 .navbar{
 	text-transform:  uppercase;
-	background-color: var(--mild-bg-color);
+	/*background-color: var(--mild-bg-color);*/
+	font-size: 100px; 
 
 }
 
@@ -69,13 +72,16 @@ p {
 
 /* Start of Footer Style */
 .footer {
-	position: relative;
+	position: absolute;
 	background: var(--main-bg-color);
 	padding-top: 2rem;
 	text-align: center;
+	bottom: 0; 
 }
 /* End of Footer Style */
 
-.home{
+.main-{
 	position: relative;
 }
+
+
