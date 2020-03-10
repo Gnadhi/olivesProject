@@ -66,12 +66,7 @@ def delete_dish(request):
         form = DishDeleteForm(request.POST)
         if form.is_valid():
             dishID = form.cleaned_data.get('dishDelete')
-
             dish  = Dish.objects.filter(id=dishID).first().delete()
-            print(dish)
-            return HttpResponseRedirect(reverse('olives:delete_dish'))
-        else:
-            print(form.errors)
             return HttpResponseRedirect(reverse('olives:delete_dish'))
         else:
             print(form.errors)
