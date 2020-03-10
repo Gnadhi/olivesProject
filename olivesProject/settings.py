@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.template.backends import django
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Builds a path to the templates folder
@@ -156,7 +158,9 @@ MEDIA_URL = "/media/"
 # Email Settings
 # Created a FREE Send Grid account to send emails through their server
 # url - https://app.sendgrid.com
-EMAIL_HOST = "in-v3.mailjet.com"
-EMAIL_PORT = 587  # unencrypted/TLS connections
-EMAIL_HOST_USER = "2c1f929fd9443d227173759df06ce1e3"
-EMAIL_HOST_PASSWORD = "c0675e9583fbe23ff13e6d61a02362c0"
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "olivesandpesto1234@gmail.com"
+EMAIL_HOST_PASSWORD = "ilovemaths1234"
