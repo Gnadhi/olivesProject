@@ -156,8 +156,7 @@ MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = "/media/"
 
 # Email Settings
-# Created a FREE Send Grid account to send emails through their server
-# url - https://app.sendgrid.com
+# Using a Gmail account called olivesandpesto1234@gmail.com to send the emails through  
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_USE_TLS = True
