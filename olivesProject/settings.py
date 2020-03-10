@@ -156,7 +156,7 @@ MEDIA_URL = "/media/"
 # Email Settings
 # Created a FREE Send Grid account to send emails through their server
 # url - https://app.sendgrid.com
-EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_HOST = "in-v3.mailjet.com"
 EMAIL_PORT = 587  # unencrypted/TLS connections
-EMAIL_HOST_USER = "apikey"
-EMAIL_HOST_PASSWORD = "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"
+EMAIL_HOST_USER = "2c1f929fd9443d227173759df06ce1e3"
+EMAIL_HOST_PASSWORD = "c0675e9583fbe23ff13e6d61a02362c0"

@@ -6,29 +6,24 @@ from django.contrib import messages
 from django.views import View
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect,reverse
+from django.shortcuts import render, redirect, reverse
+
 
 def index(request):
-    # PLACEHOLDER !!!
-    response = render(request, "olives/index.html")
-    return response
+    return render(request, "olives/index.html")
+
 
 def about(request):
-
-	return render(request, "olives/about.html")
+    return render(request, "olives/about.html")
 
 
 def gallery(request):
-	return render(request, "olives/gallery.html")
-
-def specialevents(request):
-	return render(request, "olives/special-events.html")
+    return render(request, "olives/gallery.html")
 
 
-def index(request):
-    # PLACEHOLDER !!!
-    response = render(request, "olives/base.html")
-    return response
+def specialEvents(request):
+    return render(request, "olives/special-events.html")
+
 
 def dishReview(request):
     dishList = Dish.objects.order_by('-likes')[:5]
@@ -55,29 +50,23 @@ def add_dish(request):
                 messages.warning(request, 'The dish already exists!')
                 render(request, 'olives/add_dish.html', {'form': form})
         else:
-            render(request, 'olives/add_dish.html', {'form':form})
+            render(request, 'olives/add_dish.html', {'form': form})
             print(form.errors)
     return render(request, 'olives/add_dish.html', {'form': form})
 
 
 def delete_dish(request):
-    
     if request.method == 'POST':
         form = DishDeleteForm(request.POST)
         if form.is_valid():
             dishID = form.cleaned_data.get('dishDelete')
-
-            dish  = Dish.objects.filter(id=dishID).first().delete()
-            print(dish)
-            return HttpResponseRedirect(reverse('olives:delete_dish'))
-        else:
-            print(form.errors)
+            dish = Dish.objects.filter(id=dishID).first().delete()
             return HttpResponseRedirect(reverse('olives:delete_dish'))
         else:
             print(form.errors)
     else:
         form = DishDeleteForm()
-    return render(request,'olives/delete_dish.html',{'form':form})
+    return render(request, 'olives/delete_dish.html', {'form': form})
 
 
 def staffSignUp(request):
@@ -103,8 +92,10 @@ def make_booking(request):
         if form.is_valid():
             form.save(commit=True)
             # Sets up Email details
-            mail_subject = "Booking Confirmation"
-            mail_body = "Name: " + form.cleaned_data.get("name") + "\n" \
+            mail_subject = "Booking Request Received"
+            mail_body = "A booking request has been received with the following details a confirmation email will be " \
+                        "sent shortly. " + "\n" \
+                        + "Name: " + form.cleaned_data.get("name") + "\n" \
                         + "Phone: " + form.cleaned_data.get("phone") + "\n" \
                         + "Number of People: " + str(form.cleaned_data.get("noOfPeople")) + "\n" \
                         + "Date: " + str(form.cleaned_data.get("date")) + "\n" \
@@ -118,3 +109,5 @@ def make_booking(request):
             print(form.errors)
 
     return render(request, "olives/booking.html", {'form': form})
+
+
