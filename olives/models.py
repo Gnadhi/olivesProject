@@ -66,6 +66,8 @@ class Customer(models.Model):
 
 class Staff(models.Model):
     staff = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
+    is_staff = True
+    staff_list = User.objects.all()
 
     # staff_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
@@ -78,6 +80,7 @@ class Staff(models.Model):
 class Admin(models.Model):
     admin = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     admin_check = models.ForeignKey(Staff, on_delete=models.CASCADE)
+    is_admin = True
 
 #     # Check if staff has said that this person is the admin.
 #     is_admin = Staff.is_admin
@@ -104,23 +107,3 @@ class Booking(models.Model):
     def __str__(self):
         return self.name
 
-# Creates the staff table
-# class Staff(models.Model):
-#     staff = models.OneToOneField(User, on_delete=models.CASCADE)
-
-#     class Meta:
-#         verbose_name_plural = 'Staff Members'
-
-#     def __str__(self):
-#         return self.staff
-
-# This is for the Custom user Data.
-
-# class User(AbstractUser):
-#     is_staff = models.BooleanField(default=False)
-#     is_customer = models.BooleanField(default=False)
-
-#     def __str__(self):
-#         return self.name
-
-# For now just create a seperate User class for Customer

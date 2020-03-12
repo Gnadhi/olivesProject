@@ -1,13 +1,13 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from olives.forms import StaffSignUpForm, BookingForm
-from olives.models import Dish
+from olives.models import Dish, Staff
 from olives.forms import DishForm, DishDeleteForm
 from django.contrib import messages
 from django.views import View
 from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
-
+from django.contrib.auth.models import User
 
 def index(request):
     return render(request, "olives/index.html")
@@ -83,6 +83,12 @@ def staffSignUp(request):
         form = StaffSignUpForm()
     return render(request, 'olives/staffRegister.html', {'form': form})
 
+
+def staffData(request):
+    user_list = User.objects.all()
+    context_dict = {}
+    context_dict['users'] = user_list
+    return render(request, 'olives/staff.html', context=context_dict)
 
 def make_booking(request):
     form = BookingForm()

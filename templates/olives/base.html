@@ -44,11 +44,17 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'olives:special-events' %}">Special Events</a>
                 </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_logout' %}?next={% url 'olives:index' %}">Logout</a>
+                    </li>
+                {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#Login">Login</a>
+                    <a class="nav-link" href="{% url 'auth_login' %}">Login</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
-                    <a class="nav-link" href="#Register">Register</a>
+                    <a class="nav-link" href="{% url 'registration_register' %}">Register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'olives:dishReview' %}">Review dish</a>
