@@ -47,21 +47,15 @@ def dishReview(request):
 
 
 def add_dish(request):
-	form = DishForm()
-
 	if request.method == 'POST':
 		form = DishForm(request.POST)
-
 		if form.is_valid():
-			if (Dish.objects.filter(name=form.cleaned_data['name']).exists() == False):
-				form.save(commit=True)
-				return redirect('/olives/add_dish')
-			else:
-				messages.warning(request, 'The dish already exists!')
-				render(request, 'olives/add_dish.html', {'form': form})
+			form.save(commit=True)
+			return HttpResponseRedirect(reverse('olives:add_dish'))
 		else:
-			render(request, 'olives/add_dish.html', {'form': form})
 			print(form.errors)
+	else:
+		form = DishForm()
 	return render(request, 'olives/add_dish.html', {'form': form})
 
 
