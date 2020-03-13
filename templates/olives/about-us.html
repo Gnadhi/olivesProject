@@ -1,0 +1,52 @@
+
+{% extends 'olives/base.html' %} 
+{% load static %} 
+
+{% block title_block %}
+About Us
+{% endblock %}
+
+{% block body_block %}
+
+    <main class="page">
+        <section class="clean-block about-us">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text">About Us</h2>
+                    <p>This is a about us page with some <b>shit </b> about different staff members. </p>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="{% static "img/about-people/chef.jpg" %}">
+                            <div class="card-body info">
+                                <h4 class="card-title">Chef</h4>
+                                <p class="card-text">Hi I am a chef and I do chef stuff.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="{% static "img/about-people/sous-chef.jpg" %}">
+                            <div class="card-body info">
+                                <h4 class="card-title">Sous-Chef</h4>
+                                <p class="card-text">Hi I am the Sous-chef and I am second in command.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card clean-card text-center"><img class="card-img-top w-100 d-block" src="{% static "img/about-people/waiter.jpg" %}">
+                            <div class="card-body info">
+                                <h4 class="card-title">Waiter</h4>
+                                <p class="card-text">Hi I am waiter. I serve people food, delicious, delicious food.  </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
+
+
+
+ 

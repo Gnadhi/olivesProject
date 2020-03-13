@@ -14,8 +14,8 @@ def index(request):
     return render(request, "olives/index.html")
 
 
-def about(request):
-    return render(request, "olives/about.html")
+def about_us(request):
+    return render(request, "olives/about-us.html")
 
 
 def gallery(request):
