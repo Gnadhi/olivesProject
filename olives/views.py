@@ -96,7 +96,7 @@ def staffData(request):
     return render(request, 'olives/staff.html', context=context_dict)
 
 
-def make_booking(request):
+def booking(request):
     form = BookingForm()
 
     if request.method == "POST":
