@@ -20,3 +20,21 @@ h5 {
     min-height:500px !important;
 
 }
+
+/* FORM STYLE */
+/* Creates some override styling for form buttons different to other buttons */
+.btn-form{
+    background-color: rgba(160,183,131,0.85);
+
+}
+
+.btn-form:hover {
+    color: #ffffff !important;
+    background-color: #000000;
+}
+
+/* Changes the default form group hover border look */
+.form-group{
+    border-color:rgba(160,183,131,0.85) !important;
+}
+/* END OF FORM STYLE */
