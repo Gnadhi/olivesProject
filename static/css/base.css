@@ -1,0 +1,22 @@
+h5 {
+    color: rgb(0, 0, 0) !important;
+
+}
+
+.page-footer{
+    color: #000000;
+    background-color: #ffffff;
+    padding-top:0;
+
+}
+
+.landing-page{
+    background-image: url("/static/img/food/image4.jpg");
+    color: rgba(160,183,131,0.85);
+    padding-top: 0!important;
+}
+
+.clean-block{
+    min-height:500px !important;
+
+}
