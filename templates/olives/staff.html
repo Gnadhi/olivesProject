@@ -1,0 +1,22 @@
+{% extends 'olives/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    This is to display the staff
+{% endblock %}
+
+{% block body_block %}
+
+<h3>This is to display the list of staff.</h3> 
+
+{% for staff in users %}
+    {% if staff.is_staff%}
+        <h6>This is a staff member</h6>
+        <li>{{ staff }}</li> </br>
+    {% else %}
+        <h6>This is not a staff member</h6>
+        <li>{{ staff }}</li> </br>
+    {% endif %}
+{% endfor %}
+
+{% endblock %}

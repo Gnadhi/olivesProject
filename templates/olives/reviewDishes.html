@@ -1,0 +1,49 @@
+{% extends 'olives/base.html' %}
+
+{% block title_block %}        
+    Dish Review Page
+{% endblock %}
+        
+{% block body_block %}
+        <div>
+            <strong>{{ boldmessage }}</strong>
+        </div>
+
+        <div>
+        {% if TopDishes %}
+            <ul>
+            {% for dish in TopDishes %}
+                <li>{{ dish.name }}<strong> Likes: </strong>{{ dish.likes }}</li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no dishes present!</strong>
+        {% endif %}
+        </div>
+        
+        <div>
+        <h3>Dishes to Review</h3>
+        {% if AllDishes %}
+            <ul>
+            {% for dish in AllDishes %}
+                <li>{{ dish.name }} :<Strong id="like_count">{{ dish.likes }}</Strong> likes</li>
+                <button id="like_btn"
+                        data-categoryid="{{ dish.id }}"
+                        class="btn btn-primary btn-sm"
+                        type="button">
+                    <span data-feather="thumbs-up"></span>    
+                    Like Dish
+                </button>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no dish present.</strong>
+        {% endif %}
+        </div>
+        <div>
+            <button><a href="{% url "olives:add_dish" %}">Add a dish!</a></button>
+        </div>
+        <div>
+            <button><a href="{% url "olives:delete_dish" %}">Delete a dish!</a></button>
+        </div>
+{% endblock %}
