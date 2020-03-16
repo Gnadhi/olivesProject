@@ -18,5 +18,6 @@ urlpatterns = [
     path("delete-dish/", views.delete_dish, name="delete_dish"),
     path("staffRegister/", views.staffSignUp, name="staff_signup"),
     path("staff/", views.staffData, name="staff"),
-    path("register/", views.register, name="register")
+    path("register/", views.register, name="register"),
+    path('contact-us/', views.emailView, name='contact-us'),
 ]

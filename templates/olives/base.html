@@ -26,11 +26,12 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:index" %}">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:about-us" %}">About Us</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:gallery" %}">Gallery</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:special-events" %}">Special Events</a></li>
                     <li class="nav-item dropdown show"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">More</a>
                         <div class="dropdown-menu show" role="menu">
                             <a class="dropdown-item" role="presentation" href='#'>Login</a>
                             <a class="dropdown-item" role="presentation" href="{% url 'olives:register' %}">Register</a>
-                            <a class="dropdown-item" role="presentation" href="#">Contact Us</a>
+                            <a class="dropdown-item" role="presentation" href="{% url 'olives:contact-us' %}">Contact Us</a>
                         </div>
                     </li>
                 </ul>
@@ -45,21 +46,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4 text-center">
-                        <h5>
-                            Opening Times <br>
+                        <h5 style="font-style: normal">
                             Mon - Thurs: 12-3 pm, 5 - 10pm. <br>
                             Fri - Sat: 12-3pm, 5-10:30pm. <br>
                             Sun: 5-10pm <br>
                         </h5>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <h5>
+                        <h5 style="font-style: normal">
                             Contact us <br>
                             customersupport@ olivesandpesto.com <br>
                         </h5>
                     </div>
                     <div class="col-sm-4 text-center">
-                        <h5>
+                        <h5 style="font-style: normal">
                             Social media <br>
                             Facebook <br>
                             Twitter <br>

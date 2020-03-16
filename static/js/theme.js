@@ -10,3 +10,9 @@ if ($('.clean-product').length > 0) {
     });
 }
 
+$(document).ready(function(){
+  $("se").click(function(){
+    $("row justify-content-center").toggle();
+  });
+});
+

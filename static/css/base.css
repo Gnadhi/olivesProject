@@ -1,14 +1,16 @@
 h5 {
     color: rgb(0, 0, 0) !important;
+    font-family: Roboto;
 
 }
 
 .page-footer{
-    color: #000000;
-    background-color: #ffffff;
+    color: #eeeeee;
+    background-color: #eeeeee;
     padding-top:0;
 
 }
+
 
 .landing-page{
     background-image: url("/static/img/main-food/img1.jpg");
@@ -38,3 +40,4 @@ h5 {
     border-color:rgba(160,183,131,0.85) !important;
 }
 /* END OF FORM STYLE */
+

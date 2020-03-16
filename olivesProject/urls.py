@@ -19,10 +19,12 @@ from django.urls import path, include
 from olives import views
 from django.views.generic import RedirectView
 from django.conf.urls import url
+from olives import views
 
 urlpatterns = [
     path('', include("olives.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include('registration.backends.simple.urls')),
- 
+    path('contact-us/',views.emailView, name='email'),
+    path('success/', views.successView, name='success'),
 ]

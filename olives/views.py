@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from olives.forms import StaffSignUpForm, BookingForm
 from olives.models import Dish, Staff
-from olives.forms import DishForm, DishDeleteForm
+from olives.forms import DishForm, DishDeleteForm, ContactForm
 from django.contrib import messages
 from django.views import View
 from django.contrib.auth import authenticate, login
@@ -37,6 +37,25 @@ def register(request):
 
 def specialEvents(request):
     return render(request, "olives/special-events.html")
+
+def emailView(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['olivesandpesto1234@gmail.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('success')
+    return render(request, "olives/contact-us.html", {'form': form})
+
+def successView(request):
+    return HttpResponse('Success! Thank you for your message.')
 
 
 def dishReview(request):

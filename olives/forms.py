@@ -53,3 +53,8 @@ class DishDeleteForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(DishDeleteForm, self).__init__(*args, **kwargs)
         self.fields['dishDelete'] = forms.ChoiceField(choices=[(dish.id,dish.name) for dish in Dish.objects.all() ])
+
+class ContactForm(forms.Form):
+    from_email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)

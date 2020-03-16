@@ -70,7 +70,7 @@ p {
 /* Start of Footer Style */
 .footer {
 	position: relative;
-	background: var(--main-bg-color);
+	background: #eeeeee;
 	padding-top: 2rem;
 	text-align: center;
 }
@@ -79,3 +79,4 @@ p {
 .home{
 	position: relative;
 }
+
