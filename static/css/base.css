@@ -1,6 +1,5 @@
 h5 {
     color: rgb(0, 0, 0) !important;
-
 }
 
 .page-footer{
@@ -10,6 +9,7 @@ h5 {
 
 }
 
+/* HOME PAGE */
 .landing-page{
     background-image: url("/static/img/main-food/img1.jpg");
     color: rgba(160,183,131,0.85);
@@ -22,10 +22,13 @@ h5 {
 }
 
 /* FORM STYLE */
+
 /* Creates some override styling for form buttons different to other buttons */
 .btn-form{
     background-color: rgba(160,183,131,0.85);
-
+    align-content: center;
+    width: 30%;
+    margin-left: 35% ; /* Makes the button take up 30% the form and centers (right margin should auto be set to 35%) */
 }
 
 .btn-form:hover {
@@ -34,7 +37,17 @@ h5 {
 }
 
 /* Changes the default form group hover border look */
+.form{
+    border-top:2px solid rgba(160,183,131,0.85) !important;
+}
+
+/* Aligns the form content */
 .form-group{
-    border-color:rgba(160,183,131,0.85) !important;
+    text-align-last: justify;
+}
+
+/*Styling for the input box*/
+input:focus{
+    outline-color: rgba(160,183,131,0.85);
 }
 /* END OF FORM STYLE */
