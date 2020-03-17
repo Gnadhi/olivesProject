@@ -34,12 +34,12 @@ class DishForm(forms.ModelForm):
 
 class BookingForm(forms.ModelForm):
     # For the booking form doesnt have the confirm field as that is always set to false initially
-    name = forms.CharField(max_length=128, help_text="Please enter your name")
-    email = forms.EmailField(help_text="Please enter a valid email address")
-    phone = forms.CharField(max_length=15, help_text="Please enter your phone number")
-    noOfPeople = forms.IntegerField(help_text="Please enter the number of people you want to book a table for")
-    date = forms.DateField(help_text="Please enter the date of booking")
-    time = forms.TimeField(help_text="Please enter the time of booking")
+    name = forms.CharField(max_length=128, help_text="Name")
+    email = forms.EmailField(help_text="Email Address")
+    phone = forms.CharField(max_length=15, help_text="Phone Number")
+    noOfPeople = forms.IntegerField(help_text="Number of People")
+    date = forms.DateField(help_text="Date")
+    time = forms.TimeField(help_text="Time")
 
     class Meta:
         model = Booking
