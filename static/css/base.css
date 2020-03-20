@@ -10,16 +10,15 @@ h5 {
 }
 
 /* HOME PAGE */
-.landing-page{
-    background-image: url("/static/img/main-food/restaurant2.jpg");
-    color: rgba(160,183,131,0.85);
-    padding-top: 0!important;
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
 
-.clean-block{
-    min-height:500px !important;
-
-}
 
 /* FORM STYLE */
 
@@ -50,4 +49,12 @@ h5 {
 input:focus{
     outline-color: rgba(160,183,131,0.85);
 }
+
 /* END OF FORM STYLE */
+
+/*START OF ABOUT PAGE STYLE*/
+/* space between rows */
+.top-buffer { margin-top:50px;
+}
+
+/*END OF ABOUT PAGE STYLE*/
