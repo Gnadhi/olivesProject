@@ -53,10 +53,6 @@ class Order(models.Model):
 class Customer(models.Model):
     # This line is required as it links user profile to a user model instance.
     customer = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    # The additional attributes we wish to include
-    # order = models.ForeignKey(Order, on_delete=models.CASCADE)  # One customer can have many orders
-
     class Meta:
         verbose_name_plural = 'Customers'
 
@@ -69,8 +65,6 @@ class Staff(models.Model):
     is_staff = True
     staff_list = User.objects.all()
 
-    # staff_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-
     class Meta:
         verbose_name_plural = 'Staff'
 
@@ -81,15 +75,6 @@ class Admin(models.Model):
     admin = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     admin_check = models.ForeignKey(Staff, on_delete=models.CASCADE)
     is_admin = True
-
-#     # Check if staff has said that this person is the admin.
-#     is_admin = Staff.is_admin
-
-#     class Meta:
-#         verbose_name_plural = 'Admin'
-
-#     def __str__(self):
-#         return self.admin
 
 # Booking no longer has a link to any other table
 class Booking(models.Model):
