@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, "olives/index.html")
@@ -46,7 +46,7 @@ def dishReview(request):
     response = render(request, "olives/reviewDishes.html", context=context_dict)
     return response
 
-
+@login_required
 def add_dish(request):
     if request.method == 'POST':
         form = DishForm(request.POST)
