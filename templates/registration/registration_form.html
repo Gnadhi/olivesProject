@@ -5,14 +5,19 @@
 {% endblock %}
 
 {% block body_block %}
-<h1>Register Here</h1>
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text">Register Here</h2>
+            </div>
 
-<form method="POST" action=".">
-    {% csrf_token %}
-
-    {{ form.as_p }}
-
-    <input type="submit" value="Register">
-</form>
-
+            <form class="form" method="POST" action=".">
+                {% csrf_token %}
+                    {{ form.as_p }}
+                <input class="btn btn-outline-light btn-lg btn-form center" type="submit" value="Register">
+            </form>
+        </div>
+    </section>
+</main>
 {% endblock %}
