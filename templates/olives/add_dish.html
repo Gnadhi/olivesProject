@@ -1,28 +1,39 @@
 {% extends "olives/base.html" %}
 {% load staticfiles %}
 
+
 {% block title_block %}
     Add Dish
 {% endblock %}
 
 {% block body_block %}
-        <h1>Add a Dish</h1>
-        <div>
-            <form id="dish_form" method="post" action="{% url "olives:add_dish" %}">
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text">Add a Dish</h2>
+            </div>
+
+            <form class="form" id="dish_form" method="post" action="{% url "olives:add_dish" %}">
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
                     {{ hidden }}
                 {% endfor %}
                 {% for field in form.visible_fields %}
-                    {{ field.errors }}
-                    {{ field.label }}
+                <div class="form-group">
+                    <label>
+                        {{ field.label }}
+                    </label>
                     {{ field }}
+                {{ field.errors }}
+                </div>
                 {% endfor %}
-                <input type="submit" name="submit" value="Add Dish" />
+                <input class="btn btn-outline-light btn-lg btn-form center" type="submit" name="submit" value="Add Dish" />
+                <button class="btn btn-outline-light btn-lg center"><a href="{% url "olives:dishReview" %}">To the review page!</a></button>
             </form>
+
+
         </div>
-        <div>
-            <button><a href="{% url "olives:dishReview" %}">To the review page!</a></button>
-        </div>
-        
+    </section>
+</main>
 {% endblock %}

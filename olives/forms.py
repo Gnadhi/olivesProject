@@ -52,4 +52,4 @@ class DishDeleteForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(DishDeleteForm, self).__init__(*args, **kwargs)
-        self.fields['dishDelete'] = forms.ChoiceField(choices=[(dish.id,dish.name) for dish in Dish.objects.all() ])
+        self.fields['dishDelete'] = forms.ChoiceField(choices=[(dish.id,dish.name) for dish in Dish.objects.all() ],help_text="Select Dish to Delete")
