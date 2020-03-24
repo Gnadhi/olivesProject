@@ -6,7 +6,7 @@ app_name = "olives"
 
 urlpatterns = [
     path("", views.index, name="index"),  # The index is the home page of the website
-    path('about-us/', views.about_us, name='about-us'),
+    path('about-us/', views.about_us, name='about-us'),  
     path('gallery/', views.gallery, name='gallery'),
     path("booking/", views.booking, name="booking"),
 
@@ -18,4 +18,5 @@ urlpatterns = [
     path("delete-dish/", views.delete_dish, name="delete_dish"),
     path("staffRegister/", views.staffSignUp, name="staff_signup"),
     path("staff/", views.staffData, name="staff"),
+    path('contact-us/', views.emailView, name='contact-us'),
 ]
