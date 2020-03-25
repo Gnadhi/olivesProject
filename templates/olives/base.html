@@ -27,6 +27,7 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:index" %}">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:about-us" %}">About Us</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:gallery" %}">Gallery</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:special-events" %}">Events</a></li>
                     <li class="nav-item dropdown show"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">More</a>
                         <div class="dropdown-menu show" role="menu">
                             {% if user.is_authenticated %}
