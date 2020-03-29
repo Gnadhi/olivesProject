@@ -1,0 +1,23 @@
+{% extends 'olives/base.html' %}
+
+
+{% block title_block %}
+    Contact Us
+{% endblock %}
+
+{% block body_block %}
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text">Contact Us</h2>
+            </div>
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <div class="form-group"><button class="btn btn-outline-light btn-lg btn-form center" type="submit">Send</button></div>
+            </form>
+        </div>
+    </section>
+</main>
+{% endblock %}

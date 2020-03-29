@@ -17,7 +17,6 @@ class StaffSignUpForm(UserCreationForm):
 
 
 class DishForm(forms.ModelForm):
-
     class Meta:
         model = Dish
         fields = ('name',)
@@ -27,9 +26,8 @@ class DishForm(forms.ModelForm):
         name = data.get('name')
         # to check for unquie dishes
         dishes_same_name = Dish.objects.filter(name__icontains=name).count()
-        if(dishes_same_name>0):
-            self.add_error('name','Dish already exists!')
-
+        if (dishes_same_name > 0):
+            self.add_error('name', 'Dish already exists!')
 
 
 class BookingForm(forms.ModelForm):
@@ -47,9 +45,15 @@ class BookingForm(forms.ModelForm):
 
 
 class DishDeleteForm(forms.Form):
-    
     dishDelete = forms.ChoiceField()
 
     def __init__(self, *args, **kwargs):
         super(DishDeleteForm, self).__init__(*args, **kwargs)
-        self.fields['dishDelete'] = forms.ChoiceField(choices=[(dish.id,dish.name) for dish in Dish.objects.all() ],help_text="Select Dish to Delete")
+        self.fields['dishDelete'] = forms.ChoiceField(choices=[(dish.id, dish.name) for dish in Dish.objects.all()],
+                                                      help_text="Select Dish to Delete")
+
+
+class ContactForm(forms.Form):
+    from_email = forms.EmailField(required=True)
+    subject = forms.CharField(required=True)
+    message = forms.CharField(widget=forms.Textarea, required=True)

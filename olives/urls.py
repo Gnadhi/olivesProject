@@ -18,4 +18,5 @@ urlpatterns = [
     path("delete-dish/", views.delete_dish, name="delete_dish"),
     path("staffRegister/", views.staffSignUp, name="staff_signup"),
     path("staff/", views.staffData, name="staff"),
+    path('contact-us/', views.emailView, name='contact-us'),
 ]
