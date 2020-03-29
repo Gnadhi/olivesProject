@@ -54,6 +54,6 @@ class DishDeleteForm(forms.Form):
 
 
 class ContactForm(forms.Form):
-    from_email = forms.EmailField(required=True)
-    subject = forms.CharField(required=True)
-    message = forms.CharField(widget=forms.Textarea, required=True)
+    from_email = forms.EmailField(required=True, help_text="Email Address")
+    subject = forms.CharField(required=True, help_text="Subject")
+    message = forms.CharField(widget=forms.Textarea, required=True, help_text="Message")
