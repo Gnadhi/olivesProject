@@ -1,27 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
-<h2>Sign up</h2>
-  <form method="post">
-    {% csrf_token %}
-    {% for field in form %}
-      <p>
-        {{ field.label_tag }}<br>
-        {{ field }}
-        <h4>This should differentitiate between the</h4>
-        {% if field.help_text %}
-          <small style="color: grey">{{ field.help_text }}</small>
-        {% endif %}
-        {% for error in field.errors %}
-          <p style="color: red">{{ error }}</p>
-        {% endfor %}
-      </p>
-    {% endfor %}
-    <button type="submit">Sign up</button>
-  </form>
-</body>
-</html>
+{% extends 'olives/base.html' %}
+
+{% block title_block %}
+    Staff Register
+{% endblock %}
+
+{% block body_block %}
+    <main class="page contact-us-page">
+        <section class="clean-block clean-form dark">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text">Staff Sign up</h2>
+                </div>
+
+                <form class="form" id="register_form" method="post">
+                    {% csrf_token %}
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label>
+                            {{ field.help_text }}
+                        </label>
+                    {{ field }}
+                    {{ field.errors }}
+                    </div>
+                    {% endfor %}
+                    <button class="btn btn-outline-light btn-lg btn-form center" type="submit">Sign up</button>
+                </form>
+
+            </div>
+        </section>
+    </main>
+{% endblock %}

@@ -5,9 +5,9 @@ from olives.models import Dish, Booking
 
 
 class StaffSignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Optional.')
-    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    first_name = forms.CharField(max_length=30, required=False, help_text='First Name')
+    last_name = forms.CharField(max_length=30, required=False, help_text='Last Name')
+    email = forms.EmailField(max_length=254, help_text='Email. Required')
     isAdmin = forms.BooleanField(help_text="If Admin then Yes ")
     isSuperuser = forms.BooleanField(help_text="If SuperUser then Yes")
 
