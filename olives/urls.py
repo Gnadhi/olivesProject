@@ -21,4 +21,5 @@ urlpatterns = [
     path('contact-us/', views.emailView, name='contact-us'),
     path("menu/", views.menu, name="menu"),
     path("review/", views.reviewRest, name="review-rest"),
+    path("confirm-booking/", views.confirmBooking, name="confirm-booking"),
 ]

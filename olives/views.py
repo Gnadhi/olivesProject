@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from olives.forms import StaffSignUpForm, BookingForm, ReviewForm
-from olives.models import Dish, Staff, Review
+from olives.models import Dish, Staff, Review, Booking
 from olives.forms import DishForm, DishDeleteForm, ContactForm
 from django.contrib import messages
 from django.views import View
@@ -160,7 +160,8 @@ def emailView(request):
             message = form.cleaned_data['message']
             try:
 
-                send_mail(subject, "Send From : " + from_email + "\n" + message, "Booking", ['olivesandpesto1234@gmail.com'])
+                send_mail(subject, "Send From : " + from_email + "\n" + message, "Booking",
+                          ['olivesandpesto1234@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             return redirect('success')
@@ -173,3 +174,44 @@ def successView(request):
 
 def menu(request):
     return render(request, "olives/menu.html")
+
+
+def confirmBooking(request):
+    bookings = Booking.objects.order_by('time')
+    context_dict = {}
+    context_dict['bookings'] = bookings
+    return render(request, "olives/confirm-booking.html", context=context_dict)
+
+
+def updateBooking(request):
+    if request.method == 'POST':
+        if 'update_booking_true' in request.POST:
+            bookingId = request.POST['update_booking_true']
+            booking = Booking.objects.filter(id=bookingId).first()
+            booking.confirm = True
+            booking.save()
+        else:
+            bookingId = request.POST['update_booking_true']
+            booking = Booking.objects.filter(id=bookingId).first()
+            booking.confirm = False
+            booking.save()
+
+    bookings = Booking.objects.order_by('time')
+    context_dict = {}
+    context_dict['bookings'] = bookings
+    return render(request, "olives/confirm-booking.html", context=context_dict)
+
+
+def confirmBooking(request):
+    if request.method == 'POST':
+        bookingId = request.POST['confirm-booking']
+        booking = Booking.objects.filter(id=bookingId).first()
+        booking.confirm = True
+        booking.save()
+
+    bookings = Booking.objects.order_by('time')
+    context_dict = {}
+    context_dict['bookings'] = bookings
+    return render(request, "olives/confirm-booking.html", context=context_dict)
+
+
