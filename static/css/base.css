@@ -52,9 +52,27 @@ input:focus{
 
 /* END OF FORM STYLE */
 
-/*START OF ABOUT PAGE STYLE*/
+/* START OF ABOUT PAGE STYLE */
+
 /* space between rows */
 .top-buffer { margin-top:50px;
 }
 
-/*END OF ABOUT PAGE STYLE*/
+/* END OF ABOUT PAGE STYLE */
+
+
+/* START OF REVIEW DISH STYLE */
+
+/* Changing Like Button Style */
+.btn-like{
+    background-color: rgba(160,183,131,0.85);
+    width: 20%;
+    margin-left: 0% ; /* Hugs the content to the left */
+}
+
+.btn-like:hover {
+    color: #ffffff !important;
+    background-color: #000000;
+}
+
+/* END OF REVIEW DISH STYLE */
