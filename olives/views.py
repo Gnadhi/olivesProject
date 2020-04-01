@@ -177,32 +177,6 @@ def menu(request):
 
 
 def confirmBooking(request):
-    bookings = Booking.objects.order_by('time')
-    context_dict = {}
-    context_dict['bookings'] = bookings
-    return render(request, "olives/confirm-booking.html", context=context_dict)
-
-
-def updateBooking(request):
-    if request.method == 'POST':
-        if 'update_booking_true' in request.POST:
-            bookingId = request.POST['update_booking_true']
-            booking = Booking.objects.filter(id=bookingId).first()
-            booking.confirm = True
-            booking.save()
-        else:
-            bookingId = request.POST['update_booking_true']
-            booking = Booking.objects.filter(id=bookingId).first()
-            booking.confirm = False
-            booking.save()
-
-    bookings = Booking.objects.order_by('time')
-    context_dict = {}
-    context_dict['bookings'] = bookings
-    return render(request, "olives/confirm-booking.html", context=context_dict)
-
-
-def confirmBooking(request):
     if request.method == 'POST':
         bookingId = request.POST['confirm-booking']
         booking = Booking.objects.filter(id=bookingId).first()
