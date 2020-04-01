@@ -19,4 +19,5 @@ urlpatterns = [
     path("staff-register/", views.staffSignUp, name="staff_signup"),
     path("staff/", views.staffData, name="staff"),
     path('contact-us/', views.emailView, name='contact-us'),
+    path("menu/", views.menu, name="menu"),
 ]

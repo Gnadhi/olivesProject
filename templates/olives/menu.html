@@ -1,0 +1,42 @@
+{% extends 'olives/base.html' %}
+{% load static %} 
+
+{% block title_block %}
+Menu
+{% endblock %}
+
+{% block body_block %}
+
+    <main class="page gallery-page">
+        <section class="clean-block clean-gallery dark">
+            <div class="container">
+
+                <div class="block-heading">
+                    <h2 class="text">Menus</h2>
+                    <p>Have a look at our delicious menus.</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 item">
+                        <a class="lightbox" href="{% static "documents/menus/main-menu.pdf" %}"><img class="img-thumbnail img-fluid image" src="{% static "img/menu/main-menu.jpg" %}"></a>
+                        <p class="mb-4"> </p>
+                        <a class="lightbox" href="{% static "documents/menus/lunch-menu.pdf" %}"><img class="img-thumbnail img-fluid image" src="{% static "img/menu/lunch-menu.jpg" %}"></a>
+                        <p class="mb-4"> </p>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <a class="lightbox" href="{% static "documents/menus/dinner-menu.pdf" %}"><img class="img-thumbnail img-fluid image" src="{% static "img/menu/dinner-menu.jpg" %}"></a>
+                        <p class="mb-4"> </p>
+                        <a class="lightbox" href="{% static "documents/menus/pretheature-menu.pdf" %}"><img class="img-thumbnail img-fluid image" src="{% static "img/menu/pretheature-menu.jpg" %}"></a>
+                        <p class="mb-4"> </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+{% endblock %}
+
+
+
+

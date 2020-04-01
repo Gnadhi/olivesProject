@@ -159,3 +159,7 @@ def emailView(request):
 
 def successView(request):
     return HttpResponse('Success! Thank you for your message.')
+
+
+def menu(request):
+    return render(request, "olives/menu.html")
