@@ -18,25 +18,14 @@ def index(request):
 def about_us(request):
     return render(request, "olives/about-us.html")
 
+
 # This checks if the user is logged in.
 def login_check(user):
     return user.is_authenticated
 
 
-
-
 def gallery(request):
-    imageID = ['myImg', 'myImg2', 'myImg3', 'myImg4', 'myImg5', 'myImg6']
-    modalID = ['img01', 'img02', 'img03', 'img04', 'img05', 'img06']
-    imageURL = ['../../static/images/burger.jpg', '../../static/images/cakes.jpg',
-                '../../static/images/chicken.jpg', '../../static/images/snapper.jpg',
-                '../../static/images/spaghetti.jpg', '../../static/images/steak.jpg']
-    captions = ['Burger and chips', 'Minced cake', 'Grilled chicken', 'Red snapper', 'Spaghetti meatballs',
-                'Steak']
-
-    images = zip(imageID, modalID, imageURL, captions)
-
-    return render(request, "olives/gallery.html", {'images': images})
+    return render(request, "olives/gallery.html")
 
 
 def specialEvents(request):
@@ -56,9 +45,10 @@ def dishReview(request):
     response = render(request, "olives/reviewDishes.html", context=context_dict)
     return response
 
+
 def reviewRest(request):
     review = Review.objects.all()
-    context_dict = {'userReviews':review}
+    context_dict = {'userReviews': review}
     if request.method == 'POST':
         form = ReviewForm(request.POST)
         if form.is_valid():
@@ -69,8 +59,9 @@ def reviewRest(request):
             print(form.errors)
     else:
         form = ReviewForm()
-    context_dict.update({"form":form})
+    context_dict.update({"form": form})
     return render(request, 'olives/review.html', context=context_dict)
+
 
 # This is for the admin(s) only
 @login_required
@@ -85,7 +76,6 @@ def add_dish(request):
     else:
         form = DishForm()
     return render(request, 'olives/add_dish.html', {'form': form})
-
 
 
 # This is for the admin(s) only.
@@ -103,9 +93,9 @@ def delete_dish(request):
         form = DishDeleteForm()
     return render(request, 'olives/delete_dish.html', {'form': form})
 
+
 def like(request, picture_id):
     pass
-
 
 
 def staffSignUp(request):
