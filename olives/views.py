@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from olives.forms import StaffSignUpForm, BookingForm
-from olives.models import Dish, Staff
+from olives.forms import StaffSignUpForm, BookingForm, ReviewForm
+from olives.models import Dish, Staff, Review
 from olives.forms import DishForm, DishDeleteForm, ContactForm
 from django.contrib import messages
 from django.views import View
@@ -56,6 +56,21 @@ def dishReview(request):
     response = render(request, "olives/reviewDishes.html", context=context_dict)
     return response
 
+def reviewRest(request):
+    review = Review.objects.all()
+    context_dict = {'userReviews':review}
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            form.instance.user = request.user
+            form.save(commit=True)
+            return HttpResponseRedirect(reverse('olives:review-rest'))
+        else:
+            print(form.errors)
+    else:
+        form = ReviewForm()
+    context_dict.update({"form":form})
+    return render(request, 'olives/review.html', context=context_dict)
 
 # This is for the admin(s) only
 @login_required
@@ -72,6 +87,7 @@ def add_dish(request):
     return render(request, 'olives/add_dish.html', {'form': form})
 
 
+
 # This is for the admin(s) only.
 @login_required
 def delete_dish(request):
@@ -86,6 +102,10 @@ def delete_dish(request):
     else:
         form = DishDeleteForm()
     return render(request, 'olives/delete_dish.html', {'form': form})
+
+def like(request, picture_id):
+    pass
+
 
 
 def staffSignUp(request):

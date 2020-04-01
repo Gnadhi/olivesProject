@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from olives.models import Dish, Booking
+from olives.models import Dish, Booking, Review
 
 
 class StaffSignUpForm(UserCreationForm):
@@ -15,6 +15,11 @@ class StaffSignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', "isAdmin", "isSuperuser")
 
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ('review',)
+    
 
 class DishForm(forms.ModelForm):
     class Meta:

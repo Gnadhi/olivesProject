@@ -26,6 +26,13 @@ class Menu(models.Model):
         verbose_name_plural = 'Menus'
 
 
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    review = models.CharField(max_length=500)
+
+    class Meta:
+        verbose_name_plural = 'Review'    
+
 class Dish(models.Model):
     name = models.CharField(max_length=50)  # The name of the dish
     likes = models.IntegerField(default=0)  # The number of likes the dishes have

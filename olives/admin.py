@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from olives.models import Menu, Dish, Order, Booking, Customer, Staff, Admin
+from olives.models import Menu, Dish, Order, Booking, Customer, Staff, Admin, Review
 
 #Staff model yet to fixed.
 
@@ -40,7 +40,7 @@ admin.site.register(Dish)  # Registers the model onto the admin website.
 admin.site.register(Order)
 admin.site.register(Customer)
 admin.site.register(Booking)
-
+admin.site.register(Review)
 # This is to Re-register UserAdmin
 admin.site.unregister(User)
 admin.site.register(User)
