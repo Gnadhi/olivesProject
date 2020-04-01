@@ -14,7 +14,16 @@
 
             <form class="form" method="POST" action=".">
                 {% csrf_token %}
-                    {{ form.as_p }}
+                    {% for field in form %}
+                        <div class="fieldWrapper">
+                            {{ field.errors }}
+                            {{ field.label_tag }}
+                            {{ field }}
+                            {% if field.help_text %}
+                                <p class="help">{{ field.help_text|safe }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
                 <input class="btn btn-outline-light btn-lg btn-form center" type="submit" value="Register">
             </form>
         </div>

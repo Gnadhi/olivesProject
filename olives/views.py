@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 def index(request):
@@ -17,6 +17,12 @@ def index(request):
 
 def about_us(request):
     return render(request, "olives/about-us.html")
+
+# This checks if the user is logged in.
+def login_check(user):
+    return user.is_authenticated
+
+
 
 
 def gallery(request):
@@ -38,7 +44,8 @@ def specialEvents(request):
 
 
 # This is available to all logged in users.
-@login_required
+# This allows custom tests.
+@user_passes_test(login_check)
 def dishReview(request):
     dishList = Dish.objects.order_by('-likes')[:5]
     allDishList = Dish.objects.all()
