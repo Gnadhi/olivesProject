@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from olives.models import Dish, Booking, Review
 from datetime import datetime
+from django.utils import timezone
 
 class StaffSignUpForm(UserCreationForm):
     username = forms.CharField(max_length=20, required=True)
@@ -52,7 +53,10 @@ class BookingForm(forms.ModelForm):
         data = self.cleaned_data
         if(data['noOfPeople']<=1):
             self.add_error('noOfPeople', "People cannot be 0 or negative")
-        
+        if data['date'] < timezone.now().date():
+            self.add_error('date',"Date cannot be in the past!")
+        elif data['date'] == timezone.now().date() and data['time'] < datetime.now().time():
+            self.add_error('time',"Time cannot be in past!")
         
 
 
