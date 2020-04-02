@@ -16,6 +16,7 @@ class StaffSignUpForm(UserCreationForm):
         fields = ('username', "first_name", "last_name", 'email', 'password1', 'password2', "is_staff")
 
 class ReviewForm(forms.ModelForm):
+    review = forms.CharField(widget=forms.Textarea)
     class Meta:
         model = Review
         fields = ('review',)
