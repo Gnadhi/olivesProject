@@ -28,7 +28,7 @@
                         <form action="{% url "olives:confirm-booking" %}" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="confirm-booking" value={{ booking.id }}>
-                            <button class="btn btn-outline-light btn-sm btn-like center" type="submit">Confirm</button>
+                            <button class="btn btn-outline-light btn-sm btn-like" type="submit">Confirm</button>
                         </form>
                     {% endif %}
                 {% endfor %}

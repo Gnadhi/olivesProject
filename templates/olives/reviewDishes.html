@@ -6,7 +6,7 @@
         
 {% block body_block %}
 <main class="page contact-us-page" xmlns="http://www.w3.org/1999/html">
-    <section class="clean-block clean-form dark">
+    <section class="clean-block dark">
         <div class="container">
             <div class="block-heading">
                 <h2 class="text">Review Dishes</h2>
@@ -29,7 +29,7 @@
                     <form action="{% url "olives:dishReview" %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="dish-id" value={{ dish.id }}>
-                        <button class="btn btn-outline-light btn-sm btn-like center" type="submit">Add Like</button>
+                        <button class="btn btn-outline-light btn-sm btn-form" type="submit">Add Like</button>
                     </form>
                     <br>
                 {% endfor %}
