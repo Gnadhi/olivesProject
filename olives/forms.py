@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from olives.models import Dish, Booking, Review
-
+from datetime import datetime
 
 class StaffSignUpForm(UserCreationForm):
     username = forms.CharField(max_length=20, required=True)
@@ -40,12 +40,20 @@ class BookingForm(forms.ModelForm):
     email = forms.EmailField(help_text="Email Address")
     phone = forms.CharField(max_length=15, help_text="Phone Number")
     noOfPeople = forms.IntegerField(help_text="Number of People")
-    date = forms.DateField(help_text="Date")
+    date = forms.DateField(widget=forms.SelectDateWidget, help_text="Date")
     time = forms.TimeField(help_text="Time")
 
     class Meta:
         model = Booking
         fields = ("name", "phone", "noOfPeople", "date", "time")
+
+    
+    def clean(self):
+        data = self.cleaned_data
+        if(data['noOfPeople']<=1):
+            self.add_error('noOfPeople', "People cannot be 0 or negative")
+        
+        
 
 
 class DishDeleteForm(forms.Form):
