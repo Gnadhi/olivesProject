@@ -20,7 +20,7 @@
             {% else %}
                 <p class="text-center"><strong>There are no dishes present!</strong></p><br>
             {% endif %}
-
+            {% if user.is_authenticated %}
             <h3 class="text-center">Dishes to Review</h3>
             {% if AllDishes %}
                 <p class="text-center">
@@ -37,10 +37,11 @@
             {% else %}
                 <p class="text-center"><strong>There are no dish present.</strong></p>
             {% endif %}
+            
 
             <a href="{% url "olives:add_dish" %}"> <button class="btn btn-outline-light btn-lg btn-form center">Add a dish!</button> </a>
             <a href="{% url "olives:delete_dish" %}"> <button class="btn btn-outline-light btn-lg btn-form center">Delete a dish!</button> </a>
-
+            {% endif %}
         </div>
     </section>
 </main>

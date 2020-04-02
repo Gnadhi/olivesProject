@@ -35,10 +35,11 @@
                                 <a class="dropdown-item" role="presentation" href="/accounts/logout">Logout</a>
                                 <a class="dropdown-item" role="presentation" href="{% url "olives:add_dish" %}">Add Dish</a>
                                 <a class="dropdown-item" role="presentation" href="{% url "olives:delete_dish" %}">Delete Dish</a>
-                                <a class="dropdown-item" role="presentation" href="{% url "olives:dishReview" %}">Review Dish</a>
+                                
                             {% else %}
                                 <a class="dropdown-item" role="presentation" href="/accounts/login">Login</a>
                             {% endif %}    
+                            <a class="dropdown-item" role="presentation" href="{% url "olives:dishReview" %}">Review Dish</a>
                             <a class="dropdown-item" role="presentation" href="{% url "olives:review-rest" %}">Review Resturant</a>
                             <a class="dropdown-item" role="presentation" href="/accounts/register">Register</a>
                             <a class="dropdown-item" role="presentation" href="{% url "olives:booking" %}">Book a table</a>

@@ -34,8 +34,7 @@ def specialEvents(request):
 
 
 # This is available to all logged in users.
-# This allows custom tests.
-@login_required
+# This allows custom testss
 def dishReview(request):
     # Adds 1 when button is clicked
     if request.method == 'POST':
