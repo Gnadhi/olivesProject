@@ -46,7 +46,7 @@
                             {% if user.is_authenticated %}
                                 <a class="dropdown-item" role="presentation" href="/staff-register">Staff-Register</a>
                             {% endif %}
-                            <a class="dropdown-item" role="presentation" href="#">Contact Us</a>
+                            <a class="dropdown-item" role="presentation" href="{% url "olives:contact-us" %}">Contact Us</a>
                         </div>
                     </li>
                 </ul>
