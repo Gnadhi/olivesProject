@@ -9,7 +9,8 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
-from django.contrib.auth.hashers import make_password # This is to allow encryption of the passwords.
+from django.contrib.auth.hashers import make_password  # This is to allow encryption of the passwords.
+
 
 def index(request):
     return render(request, "olives/index.html")
@@ -22,7 +23,6 @@ def about_us(request):
 # This checks if the user is a staff member.
 def staff_check(user):
     return user.is_authenticated and user.is_staff
-
 
 
 def gallery(request):
@@ -178,17 +178,30 @@ def successView(request):
 def menu(request):
     return render(request, "olives/menu.html")
 
+
 @user_passes_test(staff_check)
 def confirmBooking(request):
     if request.method == 'POST':
+        # Updates database
         bookingId = request.POST['confirm-booking']
         booking = Booking.objects.filter(id=bookingId).first()
         booking.confirm = True
         booking.save()
+        # sends booking confirmation
+        mail_subject = "Booking Request Confirmed"
+        mail_body = "We have confirmed a booking with the following details " + "\n" \
+                    + "Name: " + booking.name + "\n" \
+                    + "Phone: " + booking.phone + "\n" \
+                    + "Number of People: " + str(booking.noOfPeople) + "\n" \
+                    + "Date: " + str(booking.date) + "\n" \
+                    + "Time: " + str(booking.time) + "\n"
+        mail_sender = "Booking@olivesandpesto.com"
+        mail_sendAddress = booking.email
+        # Send Mail takes 4  required parameters - Subject Line, Message Body, Sender Address, Send Address
+        send_mail(mail_subject, mail_body, mail_sender, [mail_sendAddress], fail_silently=False, )
+
 
     bookings = Booking.objects.order_by('time')
     context_dict = {}
     context_dict['bookings'] = bookings
     return render(request, "olives/confirm-booking.html", context=context_dict)
-
-
