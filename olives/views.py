@@ -37,6 +37,13 @@ def specialEvents(request):
 # This allows custom tests.
 @login_required
 def dishReview(request):
+    # Adds 1 when button is clicked
+    if request.method == 'POST':
+        dishId = request.POST['dish-id']
+        dish = Dish.objects.filter(id=dishId).first()
+        dish.likes += 1
+        dish.save()
+
     dishList = Dish.objects.order_by('-likes')[:5]
     allDishList = Dish.objects.all()
     context_dict = {}

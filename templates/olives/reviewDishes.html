@@ -26,10 +26,11 @@
                 <p class="text-center">
                 {% for dish in AllDishes %}
                     {{ dish.name }}: <Strong id="like_count">{{ dish.likes }}</Strong> likes
-                    <button class="btn btn-outline-light btn-sm btn-like" id="like_btn" data-categoryid="{{ dish.id }}" type="button">
-                        <span data-feather="thumbs-up"></span>
-                        Like Dish
-                    </button>
+                    <form action="{% url "olives:dishReview" %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="dish-id" value={{ dish.id }}>
+                        <button class="btn btn-outline-light btn-sm btn-like center" type="submit">Add Like</button>
+                    </form>
                     <br>
                 {% endfor %}
                 </p>
