@@ -6,34 +6,42 @@
 {% endblock %}
 
 {% block body_block %}
-    <div>
-        <h2>Review by the current customers</h2>
-    </div>
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
 
-    <div>
-        {% if userReviews %}
-            {% for reviews in userReviews %}
-                <p>by {{ reviews.user.username }}:<br>{{ reviews.review }}</p>
-            {% endfor %}
-        {% else %}
-            <p>There are no review present</p>
-        {% endif %}
-    </div>
+            <div class="block-heading">
+                <h2 class="text">Review by the current customers</h2>
+            </div>
 
-    <div>
-        {% if user.is_authenticated %}
-        <form class="form" id="review_form" method="post" action="{% url "olives:review-rest" %}">
-            {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-            {% for field in form.visible_fields %}
-                {{ field.label }}
-                {{ field }}
-                {{ field.errors }}
-            {% endfor %}
-            <input type="submit" name="submit" value="Add Review" />
-        </form>
-        {% endif %}
-    </div>
+                {% if userReviews %}
+                    {% for reviews in userReviews %}
+                        <p class="text-center">by {{ reviews.user.username }}:<br>{{ reviews.review }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-center">There are no reviews present</p>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <form class="form" id="review_form" method="post" action="{% url "olives:review-rest" %}">
+                    {% csrf_token %}
+                    <p class="text-center"> Add a Review </p>
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label>
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                    {% endfor %}
+                    <input class="btn btn-outline-light btn-lg btn-form center" type="submit" name="submit" value="Add Review" />
+                {% endif %}
+
+        </div>
+    </section>
+</main>
 {% endblock %}
