@@ -7,13 +7,11 @@ from olives.models import Dish, Booking, Review
 class StaffSignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=False, help_text='First Name')
     last_name = forms.CharField(max_length=30, required=False, help_text='Last Name')
-    email = forms.EmailField(max_length=254, help_text='Email. Required')
-    isAdmin = forms.BooleanField(help_text="If Admin then Yes ")
-    isSuperuser = forms.BooleanField(help_text="If SuperUser then Yes")
-
+    email = forms.EmailField(max_length=254, help_text='Email')
+    is_staff = True
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', "isAdmin", "isSuperuser")
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', "is_staff")
 
 class ReviewForm(forms.ModelForm):
     class Meta:
