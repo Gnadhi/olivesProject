@@ -13,7 +13,7 @@
     <div>
         {% if userReviews %}
             {% for reviews in userReviews %}
-                <p>by {{ reviews.user.username }}<br>{{ reviews.review }}</p>
+                <p>by {{ reviews.user.username }}:<br>{{ reviews.review }}</p>
             {% endfor %}
         {% else %}
             <p>There are no review present</p>
