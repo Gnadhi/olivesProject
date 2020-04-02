@@ -19,9 +19,10 @@ def about_us(request):
     return render(request, "olives/about-us.html")
 
 
-# This checks if the user is logged in.
-def login_check(user):
-    return user.is_authenticated
+# This checks if the user is a staff member.
+def staff_check(user):
+    return user.is_authenticated and user.is_staff
+
 
 
 def gallery(request):
@@ -34,7 +35,7 @@ def specialEvents(request):
 
 # This is available to all logged in users.
 # This allows custom tests.
-@user_passes_test(login_check)
+@login_required
 def dishReview(request):
     dishList = Dish.objects.order_by('-likes')[:5]
     allDishList = Dish.objects.all()
@@ -64,7 +65,7 @@ def reviewRest(request):
 
 
 # This is for the admin(s) only
-@login_required
+@user_passes_test(staff_check)
 def add_dish(request):
     if request.method == 'POST':
         form = DishForm(request.POST)
@@ -79,7 +80,7 @@ def add_dish(request):
 
 
 # This is for the admin(s) only.
-@login_required
+@user_passes_test(staff_check)
 def delete_dish(request):
     if request.method == 'POST':
         form = DishDeleteForm(request.POST)
@@ -116,7 +117,7 @@ def staffSignUp(request):
 
 
 # This is for Admins and SUPERUSERS only.
-@login_required
+@user_passes_test(staff_check)
 def staffData(request):
     user_list = User.objects.all()
     context_dict = {}
@@ -177,7 +178,7 @@ def successView(request):
 def menu(request):
     return render(request, "olives/menu.html")
 
-
+@user_passes_test(staff_check)
 def confirmBooking(request):
     if request.method == 'POST':
         bookingId = request.POST['confirm-booking']
