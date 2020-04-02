@@ -14,15 +14,7 @@
 
                 <form class="form" id="register_form" method="post">
                     {% csrf_token %}
-                    {% for field in form.visible_fields %}
-                    <div class="form-group">
-                        <label>
-                            {{ field.help_text }}
-                        </label>
-                    {{ field }}
-                    {{ field.errors }}
-                    </div>
-                    {% endfor %}
+                    {{ form.as_ul }}
                     <button class="btn btn-outline-light btn-lg btn-form center" type="submit">Sign up</button>
                 </form>
 
