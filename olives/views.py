@@ -9,7 +9,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
-
+from django.contrib.auth.hashers import make_password # This is to allow encryption of the passwords.
 
 def index(request):
     return render(request, "olives/index.html")
@@ -104,8 +104,10 @@ def staffSignUp(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
+            # Encrypting the password using Argon2 before storing it
             raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            hashed_password = make_password(raw_password)
+            user = authenticate(username=username, password=hashed_password)
             # login(request, user)
             return redirect("olives:index")
     else:
