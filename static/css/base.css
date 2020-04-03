@@ -1,6 +1,5 @@
 h5 {
     color: rgb(0, 0, 0) !important;
-
 }
 
 .page-footer{
@@ -10,22 +9,25 @@ h5 {
 
 }
 
-.landing-page{
-    background-image: url("/static/img/main-food/img1.jpg");
-    color: rgba(160,183,131,0.85);
-    padding-top: 0!important;
+/* HOME PAGE */
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }
 
-.clean-block{
-    min-height:500px !important;
-
-}
 
 /* FORM STYLE */
+
 /* Creates some override styling for form buttons different to other buttons */
 .btn-form{
     background-color: rgba(160,183,131,0.85);
-
+    align-content: center;
+    width: 40%;
+    margin-left: 30% ; /* Makes the button take up 30% the form and centers (right margin should auto be set to 35%) */
 }
 
 .btn-form:hover {
@@ -34,7 +36,44 @@ h5 {
 }
 
 /* Changes the default form group hover border look */
-.form-group{
-    border-color:rgba(160,183,131,0.85) !important;
+.form{
+    border-top:2px solid rgba(160,183,131,0.85) !important;
 }
+
+/* Aligns the form content */
+.form-group{
+    text-align-last: justify;
+}
+
+/*Styling for the input box*/
+input:focus{
+    outline-color: rgba(160,183,131,0.85);
+}
+
 /* END OF FORM STYLE */
+
+/* START OF ABOUT PAGE STYLE */
+
+/* space between rows */
+.top-buffer { margin-top:50px;
+}
+
+/* END OF ABOUT PAGE STYLE */
+
+
+/* START OF REVIEW DISH STYLE */
+
+/* Changing Like Button Style */
+.btn-like{
+    background-color: rgba(160,183,131,0.85);
+    align-content: center;
+    width: 20%;
+    margin-left: 40% ; /* Makes the button take up 30% the form and centers (right margin should auto be set to 35%) */
+}
+
+.btn-like:hover {
+    color: #ffffff !important;
+    background-color: #000000;
+}
+
+/* END OF REVIEW DISH STYLE */

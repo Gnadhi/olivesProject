@@ -6,17 +6,25 @@
 {% endblock %}
 
 {% block body_block %}
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text">This is to display the list of staff</h2>
+            </div>
 
-<h3>This is to display the list of staff.</h3> 
+        {% for staff in users %}
+            {% if staff.is_staff%}
+                <h4>This is a staff member</h4>
+                <li>{{ staff }}</li> </br>
+            {% else %}
+                <h6>This is not a staff member</h6>
+                <li>{{ staff }}</li> </br>
+            {% endif %}
+        {% endfor %}
 
-{% for staff in users %}
-    {% if staff.is_staff%}
-        <h6>This is a staff member</h6>
-        <li>{{ staff }}</li> </br>
-    {% else %}
-        <h6>This is not a staff member</h6>
-        <li>{{ staff }}</li> </br>
-    {% endif %}
-{% endfor %}
 
+        </div>
+    </section>
+</main>
 {% endblock %}

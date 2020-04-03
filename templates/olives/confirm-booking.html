@@ -1,0 +1,43 @@
+{% extends 'olives/base.html' %}
+
+{% block title_block %}
+    Confirm Booking
+{% endblock %}
+
+{% block body_block %}
+
+<main class="page contact-us-page">
+    <section class="clean-block dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text">Confirm Booking</h2>
+            </div>
+
+            {% if bookings %}
+                <h3 class="text-center">Confirmed Bookings</h3>
+                {% for booking in bookings %}
+                    {% if booking.confirm == True %}
+                        <p class="text-center"> Name: {{ booking.name }} Date: {{ booking.date }} Time: {{ booking.time }}</p>
+                    {% endif %}
+                {% endfor %}
+
+                <h3 class="text-center">Unconfirmed Bookings</h3>
+                {% for booking in bookings %}
+                    {% if booking.confirm == False %}
+                        <p class="text-center"> Name: {{ booking.name }} Date: {{ booking.date }} Time: {{ booking.time }}</p>
+                        <form action="{% url "olives:confirm-booking" %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="confirm-booking" value={{ booking.id }}>
+                            <button class="btn btn-outline-light btn-sm btn-like" type="submit">Confirm</button>
+                        </form>
+                    {% endif %}
+                {% endfor %}
+
+            {% else %}
+                <p class="text-center"><strong>There are no Bookings to Confirm</strong></p><br>
+            {% endif %}
+
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,49 +1,48 @@
 {% extends 'olives/base.html' %}
-
+# Only LOGGED IN can access
 {% block title_block %}        
     Dish Review Page
 {% endblock %}
         
 {% block body_block %}
-        <div>
-            <strong>{{ boldmessage }}</strong>
-        </div>
+<main class="page contact-us-page" xmlns="http://www.w3.org/1999/html">
+    <section class="clean-block dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text">Review Dishes</h2>
+            </div>
 
-        <div>
-        {% if TopDishes %}
-            <ul>
-            {% for dish in TopDishes %}
-                <li>{{ dish.name }}<strong> Likes: </strong>{{ dish.likes }}</li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no dishes present!</strong>
-        {% endif %}
+            <h3 class="text-center">{{ boldmessage }}</h3>
+            {% if TopDishes %}
+                {% for dish in TopDishes %}
+                    <p class="text-center">{{ dish.name }}<strong> Likes: </strong>{{ dish.likes }}</p>
+                {% endfor %}
+            {% else %}
+                <p class="text-center"><strong>There are no dishes present!</strong></p><br>
+            {% endif %}
+            {% if user.is_authenticated %}
+            <h3 class="text-center">Dishes to Review</h3>
+            {% if AllDishes %}
+                <p class="text-center">
+                {% for dish in AllDishes %}
+                    {{ dish.name }}: <Strong id="like_count">{{ dish.likes }}</Strong> likes
+                    <form action="{% url "olives:dishReview" %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="dish-id" value={{ dish.id }}>
+                        <button class="btn btn-outline-light btn-sm btn-form" type="submit">Add Like</button>
+                    </form>
+                    <br>
+                {% endfor %}
+                </p>
+            {% else %}
+                <p class="text-center"><strong>There are no dish present.</strong></p>
+            {% endif %}
+            
+
+            <a href="{% url "olives:add_dish" %}"> <button class="btn btn-outline-light btn-lg btn-form center">Add a dish!</button> </a>
+            <a href="{% url "olives:delete_dish" %}"> <button class="btn btn-outline-light btn-lg btn-form center">Delete a dish!</button> </a>
+            {% endif %}
         </div>
-        
-        <div>
-        <h3>Dishes to Review</h3>
-        {% if AllDishes %}
-            <ul>
-            {% for dish in AllDishes %}
-                <li>{{ dish.name }} :<Strong id="like_count">{{ dish.likes }}</Strong> likes</li>
-                <button id="like_btn"
-                        data-categoryid="{{ dish.id }}"
-                        class="btn btn-primary btn-sm"
-                        type="button">
-                    <span data-feather="thumbs-up"></span>    
-                    Like Dish
-                </button>
-            {% endfor %}
-            </ul>
-        {% else %}
-            <strong>There are no dish present.</strong>
-        {% endif %}
-        </div>
-        <div>
-            <button><a href="{% url "olives:add_dish" %}">Add a dish!</a></button>
-        </div>
-        <div>
-            <button><a href="{% url "olives:delete_dish" %}">Delete a dish!</a></button>
-        </div>
+    </section>
+</main>
 {% endblock %}

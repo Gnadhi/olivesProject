@@ -24,27 +24,64 @@
         <div class="container"><a class="navbar-brand logo" href="{% url "olives:index" %}">Olives & Pesto</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1" >
                 <ul class="nav navbar-nav ml-auto">
+                <!--Displays name if user is logged in  -->
+                <!-- IF logged in and staff shows that you have staff status -->
+                    {% if user.is_authenticated %}
+                        <li class="nav-item" role="presentation"><a class="nav-link">Logged In: {{ user.username }}
+                        {% if user.is_staff %}
+                            <br>STAFF STATUS
+                        {% else %}
+                            <br> USER STATUS
+                        {% endif %}
+                        </a></li>
+                    {% endif %}
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:index" %}">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:about-us" %}">About Us</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:menu" %}">Menu</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:gallery" %}">Gallery</a></li>
+<<<<<<< HEAD
                     <li class="nav-item dropdown show"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">More</a>
                         <div class="dropdown-menu show" role="menu">
+=======
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{% url "olives:special-events" %}">Events</a></li>
+                    <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#">More</a>
+                        <div class="dropdown-menu" role="menu">
+>>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
                             {% if user.is_authenticated %}
                                 <a class="dropdown-item" role="presentation" href="/accounts/logout">Logout</a>
                             {% else %}
                                 <a class="dropdown-item" role="presentation" href="/accounts/login">Login</a>
+<<<<<<< HEAD
                             {% endif %}    
                             <a class="dropdown-item" role="presentation" href="/accounts/register">Register</a>
                             <a class="dropdown-item" role="presentation" href="{% url 'olives:contact-us' %}">Contact Us</a>
+=======
+                                <a class="dropdown-item" role="presentation" href="/accounts/register">Register</a>
+                            {% endif %}    
+                            <a class="dropdown-item" role="presentation" href="{% url "olives:dishReview" %}">Review Dish</a>
+                            <a class="dropdown-item" role="presentation" href="{% url "olives:review-rest" %}">Review Resturant</a>
+                            <a class="dropdown-item" role="presentation" href="{% url "olives:booking" %}">Book a table</a>
+                            {% if user.is_authenticated %}
+                                <a class="dropdown-item" role="presentation" href="/staff-register">Staff-Register</a>
+                            {% endif %}
+                            <a class="dropdown-item" role="presentation" href="{% url "olives:contact-us" %}">Contact Us</a>
+                            {% if user.is_staff %}
+                                <a class="dropdown-item" role="presentation" href={% url "olives:confirm-booking" %}>Confirm Booking</a>
+                                <a class="dropdown-item" role="presentation" href="{% url "olives:add_dish" %}">Add Dish</a>
+                                <a class="dropdown-item" role="presentation" href="{% url "olives:delete_dish" %}">Delete Dish</a>
+                            {% endif %}
+>>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
     {% block body_block %}
         <!--Should be completed when inherited -->
     {% endblock %}
+
     <footer class="page-footer dark">
         <footer class="page-footer">
             <div class="container">

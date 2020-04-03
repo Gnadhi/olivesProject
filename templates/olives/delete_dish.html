@@ -5,16 +5,28 @@
 {% endblock %}
 
 {% block body_block %}
-        <h1>Delete a Dish</h1>
-        <form id="delete_dish_form" method="post" action="{% url "olives:delete_dish" %}">
-            {% csrf_token %}
-            {% for field in form.visible_fields %}
-                {{ field.help_text }}
-                {{ field }}
-            {% endfor %}
-            <input type="submit" name="submit" value="Delete Dish" />   
-        </form>
-        <div>
-            <button><a href="{% url "olives:dishReview" %}">To the review page!</a></button>
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+            <div class="block-heading">
+                <h2 class="text">Delete a Dish</h2>
+            </div>
+
+            <form class="form" id="delete_dish_form" method="post" action="{% url "olives:delete_dish" %}">
+                {% csrf_token %}
+                {% for field in form.visible_fields %}
+                <div class="form-group">
+                    <label>
+                        {{ field.help_text }}
+                    </label>
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+                {% endfor %}
+                <input class="btn btn-outline-light btn-lg btn-form center" type="submit" name="submit" value="Delete Dish" />
+                <button class="btn btn-outline-light btn-lg center"><a href="{% url "olives:dishReview" %}">To the review page!</a></button>
+            </form>
         </div>
+    </section>
+</main>
 {% endblock %}

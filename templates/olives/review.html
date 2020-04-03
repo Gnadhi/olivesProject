@@ -1,0 +1,47 @@
+{% extends "olives/base.html" %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Review
+{% endblock %}
+
+{% block body_block %}
+<main class="page contact-us-page">
+    <section class="clean-block clean-form dark">
+        <div class="container">
+
+            <div class="block-heading">
+                <h2 class="text">Review by the current customers</h2>
+            </div>
+
+                {% if userReviews %}
+                    {% for reviews in userReviews %}
+                        <p class="text-center">by {{ reviews.user.username }}:<br>{{ reviews.review }}</p>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-center">There are no reviews present</p>
+                {% endif %}
+
+                {% if user.is_authenticated %}
+                <form class="form" id="review_form" method="post" action="{% url "olives:review-rest" %}">
+                    {% csrf_token %}
+                    <p class="text-center"> Add a Review </p>
+                    {% for hidden in form.hidden_fields %}
+                        {{ hidden }}
+                    {% endfor %}
+                    {% for field in form.visible_fields %}
+                    <div class="form-group">
+                        <label>
+                            {{ field.label }}
+                        </label>
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                    {% endfor %}
+                    <input class="btn btn-outline-light btn-lg btn-form center" type="submit" name="submit" value="Add Review" />
+                {% endif %}
+
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -7,13 +7,13 @@ Booking
 
 {% block body_block %}
 <main class="page contact-us-page">
-        <section class="clean-block clean-form dark">
+    <section class="clean-block clean-form dark">
             <div class="container">
                 <div class="block-heading">
-                    <h2 class="text">Contact Us</h2>
+                    <h2 class="text">Booking</h2>
                     <p>To Make a booking fill the form bellow. </p>
                 </div>
-                <form id="dish_form" method="post" action="/booking/">
+                <form class="form" id="dish_form" method="post" action="/booking/">
                     {% csrf_token %}
                     {% for field in form.visible_fields %}
                     <div class="form-group">
@@ -22,10 +22,11 @@ Booking
                         </label>
                     {{ field }}
                     {{ field.errors }}
-                    <div>
+                    </div>
                     {% endfor %}
-                    <div class="form-group"><button class="btn btn-outline-light btn-lg btn-form" type="submit" name="submit" value="Make Booking">Send</button></div>
+                    <button class="btn btn-outline-light btn-lg btn-form center" type="submit" name="submit" value="Make Booking">Send</button>
                 </form>
             </div>
-        </section>
+    </section>
+</main>
 {% endblock %}
