@@ -1,6 +1,6 @@
 from django.test import SimpleTestCase
 from django.urls import reverse, resolve
-from olives.views import index, about_us, gallery, specialEvents
+from olives.views import index, about_us, gallery, specialEvents, menu
 
 class TestUrls(SimpleTestCase):
 
@@ -23,3 +23,8 @@ class TestUrls(SimpleTestCase):
 		url = reverse('olives:special-events')
 		print(resolve(url))
 		self.assertEquals(resolve(url).func, specialEvents)
+
+	def test_menu_url_is_resolved(self):
+		url = reverse('olives:menu')
+		print(resolve(url))
+		self.assertEquals(resolve(url).func, menu)
