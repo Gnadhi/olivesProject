@@ -30,6 +30,8 @@
                         <li class="nav-item" role="presentation"><a class="nav-link">Logged In: {{ user.username }}
                         {% if user.is_staff %}
                             <br>STAFF STATUS
+                        {% else %}
+                            <br> USER STATUS
                         {% endif %}
                         </a></li>
                     {% endif %}
