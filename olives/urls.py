@@ -19,10 +19,9 @@ urlpatterns = [
     path("staff-register/", views.staffSignUp, name="staff_signup"),
     path("staff/", views.staffData, name="staff"),
     path('contact-us/', views.emailView, name='contact-us'),
-<<<<<<< HEAD
-=======
+
     path("menu/", views.menu, name="menu"),
     path("review/", views.reviewRest, name="review-rest"),
     path("confirm-booking/", views.confirmBooking, name="confirm-booking"),
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
 ]

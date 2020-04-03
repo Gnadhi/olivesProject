@@ -42,11 +42,11 @@ class BookingForm(forms.ModelForm):
     email = forms.EmailField(help_text="Email Address")
     phone = forms.CharField(max_length=15, help_text="Phone Number")
     noOfPeople = forms.IntegerField(help_text="Number of People")
-<<<<<<< HEAD
+
     date = forms.DateField(help_text="Date")
-=======
+
     date = forms.DateField(widget=forms.SelectDateWidget, help_text="Date")
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
     time = forms.TimeField(help_text="Time")
 
     class Meta:
@@ -70,20 +70,12 @@ class DishDeleteForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(DishDeleteForm, self).__init__(*args, **kwargs)
-<<<<<<< HEAD
+
         self.fields['dishDelete'] = forms.ChoiceField(choices=[(dish.id,dish.name) for dish in Dish.objects.all() ],help_text="Select Dish to Delete")
 
 class ContactForm(forms.Form):
     from_email = forms.EmailField(required=True)
     subject = forms.CharField(required=True)
     message = forms.CharField(widget=forms.Textarea, required=True)
-=======
-        self.fields['dishDelete'] = forms.ChoiceField(choices=[(dish.id, dish.name) for dish in Dish.objects.all()],
-                                                      help_text="Select Dish to Delete")
 
 
-class ContactForm(forms.Form):
-    from_email = forms.EmailField(required=True, help_text="Email Address")
-    subject = forms.CharField(required=True, help_text="Subject")
-    message = forms.CharField(widget=forms.Textarea, required=True, help_text="Message")
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58

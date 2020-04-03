@@ -12,11 +12,11 @@
             <div class="block-heading">
                 <h2 class="text">Contact Us</h2>
             </div>
-<<<<<<< HEAD
 
 
 
-                <form method="post">
+
+                <form class="form" method="post" id="contact_form">
                     {% csrf_token %}
                     {{form.as_p}}
                     <div class="form-group"><button class="btn btn-outline-light btn-lg btn-form center" type="submit">Send</button></div>
@@ -24,22 +24,9 @@
             </form>
         </div>
         </div>
-=======
-            <form class="form" id="contact_form" method="post">
-                {% csrf_token %}
-                    {% for field in form.visible_fields %}
-                    <div class="form-group">
-                        <label>
-                            {{ field.help_text }}
-                        </label>
-                    {{ field }}
-                    {{ field.errors }}
-                    </div>
-                    {% endfor %}
-                <button class="btn btn-outline-light btn-lg btn-form center" type="submit">Contact Us</button>
-            </form>
-        </div>
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
+
+
     </section>
 </main>
 {% endblock %}

@@ -1,11 +1,11 @@
 from django.http import HttpResponse, HttpResponseRedirect
-<<<<<<< HEAD
+
 from olives.forms import StaffSignUpForm, BookingForm
 from olives.models import Dish, Staff
-=======
+
 from olives.forms import StaffSignUpForm, BookingForm, ReviewForm
 from olives.models import Dish, Staff, Review, Booking
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
 from olives.forms import DishForm, DishDeleteForm, ContactForm
 from django.contrib import messages
 from django.views import View
@@ -13,244 +13,231 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.models import User
-<<<<<<< HEAD
+
 from django.contrib.auth.decorators import login_required
-=======
+
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib.auth.hashers import make_password  # This is to allow encryption of the passwords.
 
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
 
 def index(request):
-    return render(request, "olives/index.html")
+	return render(request, "olives/index.html")
 
 
 def about_us(request):
-    return render(request, "olives/about-us.html")
+	return render(request, "olives/about-us.html")
 
 
 # This checks if the user is a staff member.
 def staff_check(user):
-    return user.is_authenticated and user.is_staff
+	return user.is_authenticated and user.is_staff
 
 
 def gallery(request):
-    return render(request, "olives/gallery.html")
+	return render(request, "olives/gallery.html")
 
 
 def specialEvents(request):
-    return render(request, "olives/special-events.html")
+	return render(request, "olives/special-events.html")
 
-<<<<<<< HEAD
+
 # This is available to all logged in users.
 @login_required
-=======
+
 
 # This is available to all logged in users.
 # This allows custom testss
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
 def dishReview(request):
-    # Adds 1 when button is clicked
-    if request.method == 'POST':
-        dishId = request.POST['dish-id']
-        dish = Dish.objects.filter(id=dishId).first()
-        dish.likes += 1
-        dish.save()
+	# Adds 1 when button is clicked
+	if request.method == 'POST':
+		dishId = request.POST['dish-id']
+		dish = Dish.objects.filter(id=dishId).first()
+		dish.likes += 1
+		dish.save()
 
-    dishList = Dish.objects.order_by('-likes')[:5]
-    allDishList = Dish.objects.all()
-    context_dict = {}
-    context_dict['boldmessage'] = 'The top five dishes of Olives & Pesto:'
-    context_dict['TopDishes'] = dishList
-    context_dict['AllDishes'] = allDishList
-    response = render(request, "olives/reviewDishes.html", context=context_dict)
-    return response
+	dishList = Dish.objects.order_by('-likes')[:5]
+	allDishList = Dish.objects.all()
+	context_dict = {}
+	context_dict['boldmessage'] = 'The top five dishes of Olives & Pesto:'
+	context_dict['TopDishes'] = dishList
+	context_dict['AllDishes'] = allDishList
+	response = render(request, "olives/reviewDishes.html", context=context_dict)
+	return response
 
-<<<<<<< HEAD
+
 # This is for the admin(s) only
 @login_required
-=======
+
 
 def reviewRest(request):
-    review = Review.objects.all()
-    context_dict = {'userReviews': review}
-    if request.method == 'POST':
-        form = ReviewForm(request.POST)
-        if form.is_valid():
-            form.instance.user = request.user
-            form.save(commit=True)
-            return HttpResponseRedirect(reverse('olives:review-rest'))
-        else:
-            print(form.errors)
-    else:
-        form = ReviewForm()
-    context_dict.update({"form": form})
-    return render(request, 'olives/review.html', context=context_dict)
+	review = Review.objects.all()
+	context_dict = {'userReviews': review}
+	if request.method == 'POST':
+		form = ReviewForm(request.POST)
+		if form.is_valid():
+			form.instance.user = request.user
+			form.save(commit=True)
+			return HttpResponseRedirect(reverse('olives:review-rest'))
+		else:
+			print(form.errors)
+	else:
+		form = ReviewForm()
+	context_dict.update({"form": form})
+	return render(request, 'olives/review.html', context=context_dict)
 
 
 # This is for the admin(s) only
 @user_passes_test(staff_check)
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
-def add_dish(request):
-    if request.method == 'POST':
-        form = DishForm(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-            return HttpResponseRedirect(reverse('olives:add_dish'))
-        else:
-            print(form.errors)
-    else:
-        form = DishForm()
-    return render(request, 'olives/add_dish.html', {'form': form})
 
-<<<<<<< HEAD
+def add_dish(request):
+	if request.method == 'POST':
+		form = DishForm(request.POST)
+		if form.is_valid():
+			form.save(commit=True)
+			return HttpResponseRedirect(reverse('olives:add_dish'))
+		else:
+			print(form.errors)
+	else:
+		form = DishForm()
+	return render(request, 'olives/add_dish.html', {'form': form})
+
+
 # This is for the admin(s) only.
 @login_required
-=======
+
 
 # This is for the admin(s) only.
 @user_passes_test(staff_check)
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
 def delete_dish(request):
-    if request.method == 'POST':
-        form = DishDeleteForm(request.POST)
-        if form.is_valid():
-            dishID = form.cleaned_data.get('dishDelete')
-            dish = Dish.objects.filter(id=dishID).first().delete()
-            return HttpResponseRedirect(reverse('olives:delete_dish'))
-        else:
-            print(form.errors)
-    else:
-        form = DishDeleteForm()
-    return render(request, 'olives/delete_dish.html', {'form': form})
+	if request.method == 'POST':
+		form = DishDeleteForm(request.POST)
+		if form.is_valid():
+			dishID = form.cleaned_data.get('dishDelete')
+			dish = Dish.objects.filter(id=dishID).first().delete()
+			return HttpResponseRedirect(reverse('olives:delete_dish'))
+		else:
+			print(form.errors)
+	else:
+		form = DishDeleteForm()
+	return render(request, 'olives/delete_dish.html', {'form': form})
 
 
 def like(request, picture_id):
-    pass
+	pass
 
 
 def staffSignUp(request):
-    if request.method == 'POST':
-        form = StaffSignUpForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            # Encrypting the password using Argon2 before storing it
-            raw_password = form.cleaned_data.get('password1')
-            hashed_password = make_password(raw_password)
-            user = authenticate(username=username, password=hashed_password)
-            # login(request, user)
-            return redirect("olives:index")
-    else:
-        form = StaffSignUpForm()
-    return render(request, 'olives/staffRegister.html', {'form': form})
+	if request.method == 'POST':
+		form = StaffSignUpForm(request.POST)
+		if form.is_valid():
+			form.save()
+			username = form.cleaned_data.get('username')
+			# Encrypting the password using Argon2 before storing it
+			raw_password = form.cleaned_data.get('password1')
+			hashed_password = make_password(raw_password)
+			user = authenticate(username=username, password=hashed_password)
+			# login(request, user)
+			return redirect("olives:index")
+	else:
+		form = StaffSignUpForm()
+	return render(request, 'olives/staffRegister.html', {'form': form})
 
-<<<<<<< HEAD
+
 # This is for Admins and SUPERUSERS only.
 @login_required
-=======
+
 
 # This is for Admins and SUPERUSERS only.
 @user_passes_test(staff_check)
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
 def staffData(request):
-    user_list = User.objects.all()
-    context_dict = {}
-    context_dict['users'] = user_list
-    return render(request, 'olives/staff.html', context=context_dict)
+	user_list = User.objects.all()
+	context_dict = {}
+	context_dict['users'] = user_list
+	return render(request, 'olives/staff.html', context=context_dict)
 
 
 def booking(request):
-    form = BookingForm()
+	form = BookingForm()
 
-    if request.method == "POST":
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-            # Sets up Email details
-            mail_subject = "Booking Request Received"
-            mail_body = "A booking request has been received with the following details a confirmation email will be " \
-                        "sent shortly. " + "\n" \
-                        + "Name: " + form.cleaned_data.get("name") + "\n" \
-                        + "Phone: " + form.cleaned_data.get("phone") + "\n" \
-                        + "Number of People: " + str(form.cleaned_data.get("noOfPeople")) + "\n" \
-                        + "Date: " + str(form.cleaned_data.get("date")) + "\n" \
-                        + "Time: " + str(form.cleaned_data.get("time")) + "\n"
-            mail_sender = "Booking@olivesandpesto.com"
-            mail_sendAddress = form.cleaned_data.get("email")
-            # Send Mail takes 4  required parameters - Subject Line, Message Body, Sender Address, Send Address
-            send_mail(mail_subject, mail_body, mail_sender, [mail_sendAddress], fail_silently=False, )
-            return redirect("olives:index")
-        else:
-            print(form.errors)
+	if request.method == "POST":
+		form = BookingForm(request.POST)
+		if form.is_valid():
+			form.save(commit=True)
+			# Sets up Email details
+			mail_subject = "Booking Request Received"
+			mail_body = "A booking request has been received with the following details a confirmation email will be " \
+						"sent shortly. " + "\n" \
+						+ "Name: " + form.cleaned_data.get("name") + "\n" \
+						+ "Phone: " + form.cleaned_data.get("phone") + "\n" \
+						+ "Number of People: " + str(form.cleaned_data.get("noOfPeople")) + "\n" \
+						+ "Date: " + str(form.cleaned_data.get("date")) + "\n" \
+						+ "Time: " + str(form.cleaned_data.get("time")) + "\n"
+			mail_sender = "Booking@olivesandpesto.com"
+			mail_sendAddress = form.cleaned_data.get("email")
+			# Send Mail takes 4  required parameters - Subject Line, Message Body, Sender Address, Send Address
+			send_mail(mail_subject, mail_body, mail_sender, [mail_sendAddress], fail_silently=False)
+			return redirect("olives:index")
+		else:
+			print(form.errors)
 
-    return render(request, "olives/booking.html", {'form': form})
+	return render(request, "olives/booking.html", {'form': form})
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+
+
 def emailView(request):
-    if request.method == 'GET':
-        form = ContactForm()
-    else:
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            from_email = form.cleaned_data['from_email']
-            message = form.cleaned_data['message']
-            try:
-<<<<<<< HEAD
-                send_mail(subject, message, from_email, ['olivesandpesto1234@gmail.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return redirect('success')
-    return render(request, "olives/contactus.html", {'form': form})
+	if request.method == 'GET':
+		form = ContactForm()
+	else:
+		form = ContactForm(request.POST)
+		if form.is_valid():
+			subject = form.cleaned_data['subject']
+			from_email = form.cleaned_data['from_email']
+			message = form.cleaned_data['message']
+			try:
+
+				send_mail(subject, message, from_email, ['olivesandpesto1234@gmail.com'])
+			except BadHeaderError:
+				return HttpResponse('Invalid header found.')
+			return redirect('success')
+	return render(request, "olives/contactus.html", {'form': form})
 
 def successView(request):
-    return HttpResponse('Success! Thank you for your message.')
-=======
-
-                send_mail(subject, "Send From : " + from_email + "\n" + message, "Booking",
-                          ['olivesandpesto1234@gmail.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return redirect("olives:index")
-    return render(request, "olives/contactus.html", {'form': form})
-
-
-def successView(request):
-    return HttpResponse('Success! Thank you for your message.')
+	return redirect("olives:index")
 
 
 def menu(request):
-    return render(request, "olives/menu.html")
+	return render(request, "olives/menu.html")
 
 
 @user_passes_test(staff_check)
 def confirmBooking(request):
-    if request.method == 'POST':
-        # Updates database
-        bookingId = request.POST['confirm-booking']
-        booking = Booking.objects.filter(id=bookingId).first()
-        booking.confirm = True
-        booking.save()
-        # sends booking confirmation
-        mail_subject = "Booking Request Confirmed"
-        mail_body = "We have confirmed a booking with the following details " + "\n" \
-                    + "Name: " + booking.name + "\n" \
-                    + "Phone: " + booking.phone + "\n" \
-                    + "Number of People: " + str(booking.noOfPeople) + "\n" \
-                    + "Date: " + str(booking.date) + "\n" \
-                    + "Time: " + str(booking.time) + "\n"
-        mail_sender = "Booking@olivesandpesto.com"
-        mail_sendAddress = booking.email
-        # Send Mail takes 4  required parameters - Subject Line, Message Body, Sender Address, Send Address
-        send_mail(mail_subject, mail_body, mail_sender, [mail_sendAddress], fail_silently=False, )
+	if request.method == 'POST':
+		# Updates database
+		bookingId = request.POST['confirm-booking']
+		booking = Booking.objects.filter(id=bookingId).first()
+		booking.confirm = True
+		booking.save()
+		# sends booking confirmation
+		mail_subject = "Booking Request Confirmed"
+		mail_body = "We have confirmed a booking with the following details " + "\n" \
+					+ "Name: " + booking.name + "\n" \
+					+ "Phone: " + booking.phone + "\n" \
+					+ "Number of People: " + str(booking.noOfPeople) + "\n" \
+					+ "Date: " + str(booking.date) + "\n" \
+					+ "Time: " + str(booking.time) + "\n"
+		mail_sender = "Booking@olivesandpesto.com"
+		mail_sendAddress = booking.email
+		# Send Mail takes 4  required parameters - Subject Line, Message Body, Sender Address, Send Address
+		send_mail(mail_subject, mail_body, mail_sender, [mail_sendAddress], fail_silently=False)
 
 
-    bookings = Booking.objects.order_by('time')
-    context_dict = {}
-    context_dict['bookings'] = bookings
-    return render(request, "olives/confirm-booking.html", context=context_dict)
->>>>>>> 11f3500eea36cf7c9b7419e57b48b249f4c50b58
+	bookings = Booking.objects.order_by('time')
+	context_dict = {}
+	context_dict['bookings'] = bookings
+	return render(request, "olives/confirm-booking.html", context=context_dict)
+
