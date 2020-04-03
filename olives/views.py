@@ -173,7 +173,7 @@ def emailView(request):
                           ['olivesandpesto1234@gmail.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            return redirect('success')
+            return redirect("olives:index")
     return render(request, "olives/contactus.html", {'form': form})
 
 
