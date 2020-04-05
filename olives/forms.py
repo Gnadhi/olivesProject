@@ -30,9 +30,8 @@ class DishForm(forms.ModelForm):
     def clean(self):
         data = self.cleaned_data
         name = data.get('name')
-        # to check for unquie dishes
-        dishes_same_name = Dish.objects.filter(name__icontains=name).count()
-        if (dishes_same_name > 0):
+        # to check for unique dishes
+        if (Dish.objects.filter(name__icontains=name)):
             self.add_error('name', 'Dish already exists!')
 
 
