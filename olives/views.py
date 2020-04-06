@@ -4,7 +4,7 @@ from olives.forms import StaffSignUpForm, BookingForm
 from olives.models import Dish, Staff
 
 from olives.forms import StaffSignUpForm, BookingForm, ReviewForm
-from olives.models import Dish, Staff, Review, Booking
+from olives.models import Dish, Staff, Review, Booking, LikedDish
 
 from olives.forms import DishForm, DishDeleteForm, ContactForm
 from django.contrib import messages
@@ -51,11 +51,18 @@ def specialEvents(request):
 
 def dishReview(request):
 	# Adds 1 when button is clicked
+
+
 	if request.method == 'POST':
 		dishId = request.POST['dish-id']
 		dish = Dish.objects.filter(id=dishId).first()
-		dish.likes += 1
-		dish.save()
+		if LikedDish.objects.filter(userID=request.user.id, dishID=dishId).exists()==False:
+			dish.likes += 1
+			dish.save()
+			likeUser = LikedDish()
+			likeUser.dishID = dishId
+			likeUser.userID = request.user.id
+			likeUser.save()
 
 	dishList = Dish.objects.order_by('-likes')[:5]
 	allDishList = Dish.objects.all()
@@ -123,11 +130,6 @@ def delete_dish(request):
 	else:
 		form = DishDeleteForm()
 	return render(request, 'olives/delete_dish.html', {'form': form})
-
-
-def like(request, picture_id):
-	pass
-
 
 def staffSignUp(request):
 	if request.method == 'POST':

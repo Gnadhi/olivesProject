@@ -43,6 +43,12 @@ class Dish(models.Model):
     def __str__(self):
         return self.name
 
+class LikedDish(models.Model):
+    userID = models.IntegerField(default=0)
+    dishID = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name_plural = 'LikedDish'
 
 # Order has a many to many relationship with dishes
 class Order(models.Model):
