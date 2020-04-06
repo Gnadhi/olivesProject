@@ -23,8 +23,8 @@
             {% if user.is_authenticated %}
             <h3 class="text-center">Dishes to Review</h3>
             {% if AllDishes %}
-                <p class="text-center">
                 {% for dish in AllDishes %}
+                <p class="text-center">
                     {{ dish.name }}: <Strong id="like_count">{{ dish.likes }}</Strong> likes
                     <form action="{% url "olives:dishReview" %}" method="POST">
                         {% csrf_token %}
@@ -32,8 +32,8 @@
                         <button class="btn btn-outline-light btn-sm btn-form" type="submit">Add Like</button>
                     </form>
                     <br>
-                {% endfor %}
                 </p>
+                {% endfor %}
             {% else %}
                 <p class="text-center"><strong>There are no dish present.</strong></p>
             {% endif %}
