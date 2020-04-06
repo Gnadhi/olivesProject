@@ -29,11 +29,16 @@
                     <form action="{% url "olives:dishReview" %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="dish-id" value={{ dish.id }}>
-                        <button class="btn btn-outline-light btn-sm btn-form" type="submit">Add Like</button>
+                        {% if not user.is_staff %}
+                            <button class="btn btn-outline-light btn-sm btn-form" type="submit">Add Like</button>
+                        {% endif %}
                     </form>
                     <br>
                 </p>
                 {% endfor %}
+                {% if user.is_staff %}
+                    <p class="text-center">Only Customers are allowed to rate dishes.</p>
+                {% endif %} 
             {% else %}
                 <p class="text-center"><strong>There are no dish present.</strong></p>
             {% endif %}

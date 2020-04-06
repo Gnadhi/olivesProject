@@ -35,6 +35,7 @@ SECRET_KEY = '3kju1w^h09g39hu!oba*_dsf4^v469^7=@p%mu78h!7p=9yqlr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+
 ALLOWED_HOSTS = []
 
 # Variables to be used throughout django.
