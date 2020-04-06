@@ -25,7 +25,7 @@ class Menu(models.Model):
     class Meta:
         verbose_name_plural = 'Menus'
 
-
+# Contains the reviews provided by the users and staff.
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.CharField(max_length=500)
@@ -33,6 +33,7 @@ class Review(models.Model):
     class Meta:
         verbose_name_plural = 'Review'    
 
+# Contains all the dishes provided by the restaurant.
 class Dish(models.Model):
     name = models.CharField(max_length=50)  # The name of the dish
     likes = models.IntegerField(default=0)  # The number of likes the dishes have
@@ -43,6 +44,7 @@ class Dish(models.Model):
     def __str__(self):
         return self.name
 
+# Keeps track of the users and the dishes liked by them.
 class LikedDish(models.Model):
     userID = models.IntegerField(default=0)
     dishID = models.IntegerField(default=0)

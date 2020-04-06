@@ -50,9 +50,8 @@ def specialEvents(request):
 # This allows custom testss
 
 def dishReview(request):
-	# Adds 1 when button is clicked
-
-
+	# Adds 1 when button is clicked, to the likes variable of the dish object.
+	# The second if condition checks whether the user has already liked the dish.
 	if request.method == 'POST':
 		dishId = request.POST['dish-id']
 		dish = Dish.objects.filter(id=dishId).first()
