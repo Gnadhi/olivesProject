@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
-from olives.models import Menu, Dish, Order, Booking, Customer, Staff, Admin, Review
+from olives.models import Menu, Dish, Booking, Customer, Staff, Admin, Review
 
 #Staff model yet to fixed.
 
@@ -37,7 +37,6 @@ class MenuAdmin(admin.ModelAdmin):
 admin.site.register(Menu, MenuAdmin)  # Updates the registration to include this customised interface
 
 admin.site.register(Dish)  # Registers the model onto the admin website.
-admin.site.register(Order)
 admin.site.register(Customer)
 admin.site.register(Booking)
 admin.site.register(Review)
