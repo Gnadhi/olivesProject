@@ -47,22 +47,7 @@ class TestForms(SimpleTestCase):
 		self.assertFalse(form.is_valid())
 		self.assertEquals(len(form.errors), 1)
 
-	def test_staffReg_form_valid_data(self):
-		form = StaffSignUpForm(data={
-			'username': 'test',
-			'first_name': 'John',
-			'last_name': 'Doe',
-			'email': 'john@doe.com'
-			})
-
-		self.assertTrue(form.is_valid())
-
-	def test_dish_form_valid_data(self):
-		form = DishForm(data={
-			'name': 'brownie'
-			})
-
-		self.assertTrue(form.is_valid())
+	
 
 
 
