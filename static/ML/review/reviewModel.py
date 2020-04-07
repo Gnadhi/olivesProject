@@ -737,20 +737,17 @@ def prepare_text(raw_text):
     for word in raw_text:
         if word not in weight_dict:
             text.remove(word)
-    print(text)
     return text
 
 
 def use_model(string):
     string = remove_html_tags(string)
     rating = 0
-
     for word in prepare_text(string):
         print(weight_dict[word])
         rating += weight_dict[word]
     # Pass through a sigmoud function
     # We dont need to use the sigmond function anymore
-    print(rating)
     if rating > 2:
         return 100
     elif rating < -2:

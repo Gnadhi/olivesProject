@@ -16,7 +16,7 @@
 
                 {% if userReviews %}
                     {% for reviews in userReviews %}
-                        <p class="text-center">by {{ reviews.user.username }}:<br>{{ reviews.review }}</p>
+                        <p class="text-center">by {{ reviews.user.username }}:<br>{{ reviews.review }}<br>Score: {{ reviews.score }}</p>
                     {% endfor %}
                 {% else %}
                     <p class="text-center">There are no reviews present</p>

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from olives.models import Dish, Booking, Review
 from datetime import datetime
 from django.utils import timezone
+from static.ML.review.reviewModel import use_model
 
 class StaffSignUpForm(UserCreationForm):
     username = forms.CharField(max_length=20, required=True)
@@ -17,8 +18,7 @@ class StaffSignUpForm(UserCreationForm):
 
 class ReviewForm(forms.ModelForm):
     review = forms.CharField(widget=forms.Textarea)
-    score = forms.IntegerField()
-
+    score = forms.IntegerField(widget = forms.HiddenInput(), required=False)
     class Meta:
         model = Review
         fields = ('review',)
