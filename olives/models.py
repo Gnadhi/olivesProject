@@ -29,6 +29,7 @@ class Menu(models.Model):
 class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     review = models.CharField(max_length=500)
+    score = models.IntegerField(default=50)
 
     class Meta:
         verbose_name_plural = 'Review'    

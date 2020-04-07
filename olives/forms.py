@@ -17,6 +17,8 @@ class StaffSignUpForm(UserCreationForm):
 
 class ReviewForm(forms.ModelForm):
     review = forms.CharField(widget=forms.Textarea)
+    score = forms.IntegerField()
+
     class Meta:
         model = Review
         fields = ('review',)
