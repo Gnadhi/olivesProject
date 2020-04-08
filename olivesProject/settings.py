@@ -36,7 +36,7 @@ SECRET_KEY = '3kju1w^h09g39hu!oba*_dsf4^v469^7=@p%mu78h!7p=9yqlr'
 DEBUG = True
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['http://uibra1999.pythonanywhere.com/']
 
 # Variables to be used throughout django.
 
